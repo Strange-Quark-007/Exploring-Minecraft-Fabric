@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "exploringfabric",
+	"version": "${version}",
+	"name": "Exploring-Fabric",
+	"description": "Exploring Minecraft Fabric Modding",
+	"authors": [
+		"Yasin Bhimani!"
+	],
+	"contact": {
+		"homepage": "https://github.com/Strange-Quark-007",
+		"sources": "https://github.com/Strange-Quark-007/Exploring-Fabric"
+	},
+	"license": "MIT",
+	"icon": "assets/exploringfabric/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"strangequark.exploringfabric.ExploringFabric"
+		],
+		"fabric-datagen": [
+			"strangequark.exploringfabric.ExploringFabricDataGenerator"
+		],
+		"client": [
+			"strangequark.exploringfabric.ExploringFabricClient"
+		]
+	},
+	"mixins": [
+		"exploringfabric.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
