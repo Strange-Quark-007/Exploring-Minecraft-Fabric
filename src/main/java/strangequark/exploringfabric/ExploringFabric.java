@@ -3,6 +3,7 @@ package strangequark.exploringfabric;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.item.ModItems;
 
 public class ExploringFabric implements ModInitializer {
@@ -12,5 +13,6 @@ public class ExploringFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ModItems.registerModItems();
+        ModBlocks.registerModBlocks();
     }
 }

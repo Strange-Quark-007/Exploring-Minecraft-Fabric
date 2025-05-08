@@ -1,5 +1,6 @@
 package strangequark.exploringfabric.utils;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -10,6 +11,12 @@ public class ModRegistryKeys {
     public static class Items {
         public static RegistryKey<Item> createRegistryKey(String name) {
             return RegistryKey.of(RegistryKeys.ITEM, createIdentifier(name));
+        }
+    }
+
+    public static class Blocks {
+        public static RegistryKey<Block> createRegistryKey(String name) {
+            return RegistryKey.of(RegistryKeys.BLOCK, createIdentifier(name));
         }
     }
 }
