@@ -11,16 +11,11 @@ import strangequark.exploringfabric.ExploringFabric;
 import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
 import static strangequark.exploringfabric.utils.ModRegistryKeys.Items.createRegistryKey;
 
-@FunctionalInterface
-interface ItemFactory<T extends Item> {
-    T create(Item.Settings settings);
-}
-
 public class ModItems {
     public static final Item RAW_PINK_GARNET = createItem("raw_pink_garnet", Item::new);
     public static final Item PINK_GARNET = createItem("pink_garnet", Item::new);
 
-    private static <T extends Item> T createItem(String name, @NotNull ItemFactory<T> itemCreator) {
+    public static <T extends Item> T createItem(String name, @NotNull ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
         return registerItem(name, itemCreator.create(settings));
     }
