@@ -9,6 +9,8 @@ import net.minecraft.text.Text;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.block.ModBlocks;
 
+import static strangequark.exploringfabric.block.ModBlocks.PINK_GARNET_DEEPSLATE_ORE;
+import static strangequark.exploringfabric.block.ModBlocks.PINK_GARNET_ORE;
 import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
 
 public class ModItemGroups {
@@ -32,10 +34,12 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.PINK_GARNET_BLOCK);
                         entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
+                        entries.add(PINK_GARNET_ORE);
+                        entries.add(PINK_GARNET_DEEPSLATE_ORE);
                     })
                     .build());
 
     public static void registerItemGroups() {
-        ExploringFabric.LOGGER.info("Registering Item Groups for" + ExploringFabric.MOD_ID);
+        ExploringFabric.LOGGER.info("Registering Item Groups for " + ExploringFabric.MOD_ID);
     }
 }
