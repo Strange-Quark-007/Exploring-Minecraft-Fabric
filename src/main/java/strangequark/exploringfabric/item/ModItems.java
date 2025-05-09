@@ -7,6 +7,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import org.jetbrains.annotations.NotNull;
 import strangequark.exploringfabric.ExploringFabric;
+import strangequark.exploringfabric.item.custom.ChiselItem;
 
 import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
 import static strangequark.exploringfabric.utils.ModRegistryKeys.Items.createRegistryKey;
@@ -14,6 +15,7 @@ import static strangequark.exploringfabric.utils.ModRegistryKeys.Items.createReg
 public class ModItems {
     public static final Item RAW_PINK_GARNET = createItem("raw_pink_garnet", Item::new);
     public static final Item PINK_GARNET = createItem("pink_garnet", Item::new);
+    public static final Item CHISEL = createItem("chisel", settings -> new ChiselItem(settings.maxDamage(32)));
 
     public static <T extends Item> T createItem(String name, @NotNull ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
