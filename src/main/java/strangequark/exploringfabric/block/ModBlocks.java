@@ -3,11 +3,13 @@ package strangequark.exploringfabric.block;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.ExperienceDroppingBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import org.jetbrains.annotations.NotNull;
 import strangequark.exploringfabric.ExploringFabric;
 
@@ -21,6 +23,14 @@ public class ModBlocks {
 
     public static final Block RAW_PINK_GARNET_BLOCK = createBlock("raw_pink_garnet_block", settings ->
             new Block(settings.strength(4f).requiresTool().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+
+    public static final Block PINK_GARNET_ORE = createBlock("pink_garnet_ore", settings ->
+            new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
+                    settings.strength(4f).requiresTool()));
+
+    public static final Block PINK_GARNET_DEEPSLATE_ORE = createBlock("pink_garnet_deepslate_ore", settings ->
+            new ExperienceDroppingBlock(UniformIntProvider.create(3, 6),
+                    settings.strength(4f).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)));
 
     private static <T extends Block> T createBlock(String name, @NotNull BlockFactory<T> blockCreator) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
