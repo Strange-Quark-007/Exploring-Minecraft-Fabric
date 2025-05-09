@@ -2,5 +2,7 @@
   "item.exploringfabric.pink_garnet": "Pink Garnet",
   "item.exploringfabric.pink_garnet_block": "Block of Pink Garnet",
   "item.exploringfabric.raw_pink_garnet": "Raw Pink Garnet",
-  "item.exploringfabric.raw_pink_garnet_block": "Block of Raw Pink Garnet"
+  "item.exploringfabric.raw_pink_garnet_block": "Block of Raw Pink Garnet",
+  "itemgroup.exploringfabric.pink_garnet_blocks": "Pink Garnet Blocks",
+  "itemgroup.exploringfabric.pink_garnet_items": "Pink Garnet Items"
 }
