@@ -23,7 +23,6 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.PINK_GARNET);
                         entries.add(ModItems.RAW_PINK_GARNET);
-                        entries.add(ModItems.CHISEL);
                     })
                     .build());
 
@@ -37,6 +36,18 @@ public class ModItemGroups {
                         entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
                         entries.add(PINK_GARNET_ORE);
                         entries.add(PINK_GARNET_DEEPSLATE_ORE);
+                    })
+                    .build());
+
+    public static final ItemGroup MISC_MOD_GROUP = Registry.register(Registries.ITEM_GROUP,
+            createIdentifier("misc_mod_stuff"),
+            FabricItemGroup.builder()
+                    .icon(() -> new ItemStack(ModItems.CHISEL))
+                    .displayName(Text.translatable("itemgroup.exploringfabric.misc_mod_stuff"))
+                    .entries((displayContext, entries) -> {
+                        entries.add(ModItems.CHISEL);
+                        entries.add(ModItems.CAULIFLOWER);
+                        entries.add(ModItems.STARLIGHT_ASHES);
                         entries.add(ModBlocks.MAGIC_BLOCK);
                     })
                     .build());

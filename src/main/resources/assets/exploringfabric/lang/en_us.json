@@ -1,4 +1,5 @@
 {
+  "item.exploringfabric.cauliflower": "Cauliflower",
   "item.exploringfabric.chisel": "Chisel",
   "item.exploringfabric.magic_block": "Magic Block",
   "item.exploringfabric.pink_garnet": "Pink Garnet",
@@ -7,6 +8,8 @@
   "item.exploringfabric.pink_garnet_ore": "Pink Garnet Ore",
   "item.exploringfabric.raw_pink_garnet": "Raw Pink Garnet",
   "item.exploringfabric.raw_pink_garnet_block": "Block of Raw Pink Garnet",
+  "item.exploringfabric.starlight_ashes": "Starlight Ashes",
+  "itemgroup.exploringfabric.misc_mod_stuff": "Misc Mod Stuff",
   "itemgroup.exploringfabric.pink_garnet_blocks": "Pink Garnet Blocks",
   "itemgroup.exploringfabric.pink_garnet_items": "Pink Garnet Items"
 }
