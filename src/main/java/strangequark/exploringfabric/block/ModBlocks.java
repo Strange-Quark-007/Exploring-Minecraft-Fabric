@@ -12,6 +12,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import org.jetbrains.annotations.NotNull;
 import strangequark.exploringfabric.ExploringFabric;
+import strangequark.exploringfabric.block.custom.MagicBlock;
 
 import static strangequark.exploringfabric.item.ModItems.createItem;
 import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
@@ -31,6 +32,9 @@ public class ModBlocks {
     public static final Block PINK_GARNET_DEEPSLATE_ORE = createBlock("pink_garnet_deepslate_ore", settings ->
             new ExperienceDroppingBlock(UniformIntProvider.create(3, 6),
                     settings.strength(4f).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)));
+
+    public static final Block MAGIC_BLOCK = createBlock("magic_block", settings ->
+            new MagicBlock(settings.strength(4f).requiresTool()));
 
     private static <T extends Block> T createBlock(String name, @NotNull BlockFactory<T> blockCreator) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
