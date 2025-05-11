@@ -37,5 +37,7 @@ public class ModItems {
             entries.add(PINK_GARNET);
             entries.add(RAW_PINK_GARNET);
         });
+
+
     }
 }
