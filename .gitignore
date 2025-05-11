@@ -42,3 +42,7 @@ replay_*.log
 # github
 
 .github
+
+# data-generation
+
+src/main/generated/
