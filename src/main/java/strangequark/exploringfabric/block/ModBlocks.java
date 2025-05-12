@@ -1,9 +1,7 @@
 package strangequark.exploringfabric.block;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
@@ -36,6 +34,33 @@ public class ModBlocks {
     public static final Block MAGIC_BLOCK = createBlock("magic_block", settings ->
             new MagicBlock(settings.strength(4f).requiresTool()));
 
+    public static final Block PINK_GARNET_SLAB = createBlock("pink_garnet_slab", settings ->
+            new SlabBlock(settings.strength(2f).requiresTool()));
+
+    public static final Block PINK_GARNET_STAIRS = createBlock("pink_garnet_stairs", settings ->
+            new StairsBlock(ModBlocks.PINK_GARNET_BLOCK.getDefaultState(), settings.strength(2f).requiresTool()));
+
+    public static final Block PINK_GARNET_FENCE = createBlock("pink_garnet_fence", settings ->
+            new FenceBlock(settings.strength(2f).requiresTool()));
+
+    public static final Block PINK_GARNET_FENCE_GATE = createBlock("pink_garnet_fence_gate", settings ->
+            new FenceGateBlock(WoodType.OAK, settings.strength(2f).requiresTool()));
+
+    public static final Block PINK_GARNET_WALL = createBlock("pink_garnet_wall", settings ->
+            new WallBlock(settings.strength(2f).requiresTool()));
+
+    public static final Block PINK_GARNET_DOOR = createBlock("pink_garnet_door", settings ->
+            new DoorBlock(BlockSetType.IRON, settings.strength(2f).requiresTool().nonOpaque()));
+
+    public static final Block PINK_GARNET_TRAPDOOR = createBlock("pink_garnet_trapdoor", settings ->
+            new TrapdoorBlock(BlockSetType.IRON, settings.strength(2f).requiresTool().nonOpaque()));
+
+    public static final Block PINK_GARNET_BUTTON = createBlock("pink_garnet_button", settings ->
+            new ButtonBlock(BlockSetType.IRON, 2, settings.strength(2f).requiresTool().noCollision()));
+
+    public static final Block PINK_GARNET_PRESSURE_PLATE = createBlock("pink_garnet_pressure_plate", settings ->
+            new PressurePlateBlock(BlockSetType.IRON, settings.strength(2f).requiresTool()));
+
     private static <T extends Block> T createBlock(String name, @NotNull BlockFactory<T> blockCreator) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
         return registerBlock(name, blockCreator.create(settings));
@@ -52,6 +77,15 @@ public class ModBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register((entries -> {
             entries.add(PINK_GARNET_BLOCK);
             entries.add(RAW_PINK_GARNET_BLOCK);
+            entries.add(PINK_GARNET_SLAB);
+            entries.add(PINK_GARNET_STAIRS);
+            entries.add(PINK_GARNET_FENCE);
+            entries.add(PINK_GARNET_FENCE_GATE);
+            entries.add(PINK_GARNET_WALL);
+            entries.add(PINK_GARNET_DOOR);
+            entries.add(PINK_GARNET_TRAPDOOR);
+            entries.add(PINK_GARNET_BUTTON);
+            entries.add(PINK_GARNET_PRESSURE_PLATE);
         }));
     }
 }

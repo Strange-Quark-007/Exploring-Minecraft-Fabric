@@ -8,12 +8,22 @@
   "item.exploringfabric.magic_block.tooltip_expanded": "This block converts §dPink Garnet§r to §dDiamonds.§r",
   "item.exploringfabric.pink_garnet": "Pink Garnet",
   "item.exploringfabric.pink_garnet_block": "Block of Pink Garnet",
+  "item.exploringfabric.pink_garnet_button": "Pink Garnet Button",
   "item.exploringfabric.pink_garnet_deepslate_ore": "Pink Garnet Deepslate Ore",
+  "item.exploringfabric.pink_garnet_door": "Pink Garnet Door",
+  "item.exploringfabric.pink_garnet_fence": "Pink Garnet Fence",
+  "item.exploringfabric.pink_garnet_fence_gate": "Pink Garnet Fence Gate",
   "item.exploringfabric.pink_garnet_ore": "Pink Garnet Ore",
+  "item.exploringfabric.pink_garnet_pressure_plate": "Pink Garnet Pressure Plate",
+  "item.exploringfabric.pink_garnet_slab": "Pink Garnet Slab",
+  "item.exploringfabric.pink_garnet_stairs": "Pink Garnet Stairs",
+  "item.exploringfabric.pink_garnet_trapdoor": "Pink Garnet Trapdoor",
+  "item.exploringfabric.pink_garnet_wall": "Pink Garnet Wall",
   "item.exploringfabric.raw_pink_garnet": "Raw Pink Garnet",
   "item.exploringfabric.raw_pink_garnet_block": "Block of Raw Pink Garnet",
   "item.exploringfabric.starlight_ashes": "Starlight Ashes",
   "itemgroup.exploringfabric.misc_mod_stuff": "Misc Mod Stuff",
   "itemgroup.exploringfabric.pink_garnet_blocks": "Pink Garnet Blocks",
-  "itemgroup.exploringfabric.pink_garnet_items": "Pink Garnet Items"
+  "itemgroup.exploringfabric.pink_garnet_items": "Pink Garnet Items",
+  "tag.item.exploringfabric.transformable_items": "Transformable Items"
 }

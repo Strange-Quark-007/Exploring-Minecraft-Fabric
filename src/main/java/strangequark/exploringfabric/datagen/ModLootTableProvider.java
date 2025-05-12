@@ -25,12 +25,23 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        addDrop(ModBlocks.PINK_GARNET_BLOCK);
-        addDrop(ModBlocks.RAW_PINK_GARNET_BLOCK);
-        addDrop(ModBlocks.MAGIC_BLOCK);
         addDrop(ModBlocks.PINK_GARNET_ORE, oreDrops(ModBlocks.PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET));
         addDrop(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_DEEPSLATE_ORE,
                 ModItems.RAW_PINK_GARNET, 3.0F, 7.0F));
+
+        addDrop(ModBlocks.MAGIC_BLOCK);
+
+        addDrop(ModBlocks.PINK_GARNET_BLOCK);
+        addDrop(ModBlocks.RAW_PINK_GARNET_BLOCK);
+        addDrop(ModBlocks.PINK_GARNET_SLAB, slabDrops(ModBlocks.PINK_GARNET_SLAB));
+        addDrop(ModBlocks.PINK_GARNET_STAIRS);
+        addDrop(ModBlocks.PINK_GARNET_FENCE);
+        addDrop(ModBlocks.PINK_GARNET_FENCE_GATE);
+        addDrop(ModBlocks.PINK_GARNET_WALL);
+        addDrop(ModBlocks.PINK_GARNET_DOOR, doorDrops(ModBlocks.PINK_GARNET_DOOR));
+        addDrop(ModBlocks.PINK_GARNET_TRAPDOOR);
+        addDrop(ModBlocks.PINK_GARNET_BUTTON);
+        addDrop(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {
