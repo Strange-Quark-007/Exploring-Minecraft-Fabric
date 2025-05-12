@@ -2,10 +2,10 @@ package strangequark.exploringfabric.datagen;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.BlockStateModelGenerator;
-import net.minecraft.client.data.ItemModelGenerator;
-import net.minecraft.client.data.Models;
+import net.minecraft.client.data.*;
+import net.minecraft.client.render.model.json.WeightedVariant;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.item.ModItems;
 
 public class ModModelProvider extends FabricModelProvider {
@@ -34,6 +34,20 @@ public class ModModelProvider extends FabricModelProvider {
         pinkGarnetPool.wall(ModBlocks.PINK_GARNET_WALL);
         pinkGarnetPool.button(ModBlocks.PINK_GARNET_BUTTON);
         pinkGarnetPool.pressurePlate(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
+
+        WeightedVariant offVariant = BlockStateModelGenerator.createWeightedVariant(
+                TexturedModel.CUBE_ALL.upload(ModBlocks.PINK_GARNET_LAMP_BLOCK, blockStateModelGenerator.modelCollector)
+        );
+        WeightedVariant onVariant = BlockStateModelGenerator.createWeightedVariant(
+                blockStateModelGenerator.createSubModel(ModBlocks.PINK_GARNET_LAMP_BLOCK,
+                        "_on", Models.CUBE_ALL, TextureMap::all)
+        );
+
+        blockStateModelGenerator.blockStateCollector.accept(
+                VariantsBlockModelDefinitionCreator
+                        .of(ModBlocks.PINK_GARNET_LAMP_BLOCK)
+                        .with(BlockStateModelGenerator.createBooleanModelMap(PinkGarnetLampBlock.CLICKED, onVariant, offVariant))
+        );
     }
 
     @Override
