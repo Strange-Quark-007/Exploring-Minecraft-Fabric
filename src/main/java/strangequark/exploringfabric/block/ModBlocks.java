@@ -11,6 +11,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import org.jetbrains.annotations.NotNull;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.block.custom.MagicBlock;
+import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 
 import static strangequark.exploringfabric.item.ModItems.createItem;
 import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
@@ -60,6 +61,10 @@ public class ModBlocks {
 
     public static final Block PINK_GARNET_PRESSURE_PLATE = createBlock("pink_garnet_pressure_plate", settings ->
             new PressurePlateBlock(BlockSetType.IRON, settings.strength(2f).requiresTool()));
+
+    public static final Block PINK_GARNET_LAMP_BLOCK = createBlock("pink_garnet_lamp", settings ->
+            new PinkGarnetLampBlock(settings.strength(2f).requiresTool()
+                    .luminance(state -> state.get(PinkGarnetLampBlock.CLICKED) ? 15 : 0)));
 
     private static <T extends Block> T createBlock(String name, @NotNull BlockFactory<T> blockCreator) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
