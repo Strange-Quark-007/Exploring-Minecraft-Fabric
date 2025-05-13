@@ -13,7 +13,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import strangequark.exploringfabric.utils.ModTags;
+import strangequark.exploringfabric.util.ModTags;
 
 public class MagicBlock extends Block {
 
@@ -26,11 +26,14 @@ public class MagicBlock extends Block {
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if (entity instanceof ItemEntity itemEntity) {
-            if (isValidItem(itemEntity.getStack())) {
-                itemEntity.setStack(new ItemStack(Items.DIAMOND, itemEntity.getStack().getCount()));
-                if (!world.isClient()) {
-                    world.playSound(entity, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE, SoundCategory.BLOCKS);
-                }
+            if (!isValidItem(itemEntity.getStack())) {
+                return;
+            }
+
+            itemEntity.setStack(new ItemStack(Items.DIAMOND, itemEntity.getStack().getCount()));
+
+            if (!world.isClient()) {
+                world.playSound(entity, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE, SoundCategory.BLOCKS);
             }
         }
         super.onSteppedOn(world, pos, state, entity);

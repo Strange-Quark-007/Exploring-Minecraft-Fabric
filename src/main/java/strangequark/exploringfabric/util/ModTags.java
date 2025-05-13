@@ -1,4 +1,4 @@
-package strangequark.exploringfabric.utils;
+package strangequark.exploringfabric.util;
 
 
 import net.minecraft.block.Block;
@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 
-import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
+import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModTags {
     public static class Blocks {

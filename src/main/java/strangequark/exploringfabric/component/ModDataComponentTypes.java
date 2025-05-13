@@ -9,14 +9,17 @@ import strangequark.exploringfabric.ExploringFabric;
 
 import java.util.function.UnaryOperator;
 
-import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
+import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModDataComponentTypes {
     public static final ComponentType<BlockPos> COORDINATES = register("coordinates", blockPosBuilder -> blockPosBuilder.codec(BlockPos.CODEC));
     public static final ComponentType<Block> BLOCK = register("block", builder -> builder.codec(Registries.BLOCK.getCodec()));
 
     private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderUnaryOperator) {
-        return Registry.register(Registries.DATA_COMPONENT_TYPE, createIdentifier(name), builderUnaryOperator.apply(ComponentType.builder()).build());
+        return Registry.register(
+                Registries.DATA_COMPONENT_TYPE,
+                createIdentifier(name),
+                builderUnaryOperator.apply(ComponentType.builder()).build());
     }
 
     public static void registerDataComponentTypes() {

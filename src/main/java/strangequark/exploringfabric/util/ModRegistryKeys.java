@@ -1,11 +1,11 @@
-package strangequark.exploringfabric.utils;
+package strangequark.exploringfabric.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
-import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
+import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModRegistryKeys {
     public static class Items {

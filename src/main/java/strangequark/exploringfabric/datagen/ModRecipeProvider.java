@@ -15,7 +15,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-import org.jetbrains.annotations.NotNull;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.item.ModItems;
 
@@ -36,8 +35,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
                 offerSmelting(List.of(ModItems.RAW_PINK_GARNET), RecipeCategory.MISC, ModItems.PINK_GARNET, .25f, 200, "pink_garnet");
                 offerBlasting(List.of(ModItems.RAW_PINK_GARNET), RecipeCategory.MISC, ModItems.PINK_GARNET, .25f, 100, "pink_garnet");
-                offerSmelting(List.of(ModBlocks.RAW_PINK_GARNET_BLOCK), RecipeCategory.MISC, ModBlocks.PINK_GARNET_BLOCK, 2.5f, 600, "pink_garnet");
-                offerBlasting(List.of(ModBlocks.RAW_PINK_GARNET_BLOCK), RecipeCategory.MISC, ModBlocks.PINK_GARNET_BLOCK, 2.5f, 300, "pink_garnet");
+                offerSmelting(List.of(ModBlocks.RAW_PINK_GARNET_BLOCK), RecipeCategory.MISC, ModBlocks.PINK_GARNET_BLOCK, 2.5f, 600, "pink_garnet_block");
+                offerBlasting(List.of(ModBlocks.RAW_PINK_GARNET_BLOCK), RecipeCategory.MISC, ModBlocks.PINK_GARNET_BLOCK, 2.5f, 300, "pink_garnet_block");
 
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.PINK_GARNET, RecipeCategory.DECORATIONS, ModBlocks.PINK_GARNET_BLOCK);
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_PINK_GARNET, RecipeCategory.DECORATIONS, ModBlocks.RAW_PINK_GARNET_BLOCK);
@@ -51,8 +50,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 offerWithCriterion(createDoorRecipe(ModBlocks.PINK_GARNET_DOOR, Ingredient.ofItem(ModItems.PINK_GARNET)), ModItems.PINK_GARNET);
                 offerWithCriterion(createTrapdoorRecipe(ModBlocks.PINK_GARNET_TRAPDOOR, Ingredient.ofItem(ModItems.PINK_GARNET)), ModItems.PINK_GARNET);
                 offerWithCriterion(createButtonRecipe(ModBlocks.PINK_GARNET_BUTTON, Ingredient.ofItem(ModItems.PINK_GARNET)), ModBlocks.PINK_GARNET_BLOCK);
-                offerWithCriterion(createPressurePlateRecipe(RecipeCategory.REDSTONE, ModBlocks.PINK_GARNET_PRESSURE_PLATE, Ingredient.ofItem(ModBlocks.PINK_GARNET_BLOCK)),
-                        ModBlocks.PINK_GARNET_BLOCK);
+                offerWithCriterion(createPressurePlateRecipe(RecipeCategory.REDSTONE, ModBlocks.PINK_GARNET_PRESSURE_PLATE, Ingredient.ofItem(ModBlocks.PINK_GARNET_BLOCK)), ModBlocks.PINK_GARNET_BLOCK);
 
                 offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModBlocks.MAGIC_BLOCK)
                                 .pattern("DPD")
@@ -103,7 +101,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         ModItems.PINK_GARNET);
             }
 
-            private void offerWithCriterion(@NotNull CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
+            private void offerWithCriterion(CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
                 recipe.criterion(hasItem(unlockItem), conditionsFromItem(unlockItem)).offerTo(recipeExporter);
             }
         };

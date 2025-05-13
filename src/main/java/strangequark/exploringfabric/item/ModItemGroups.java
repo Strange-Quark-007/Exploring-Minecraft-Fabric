@@ -11,7 +11,7 @@ import strangequark.exploringfabric.block.ModBlocks;
 
 import static strangequark.exploringfabric.block.ModBlocks.PINK_GARNET_DEEPSLATE_ORE;
 import static strangequark.exploringfabric.block.ModBlocks.PINK_GARNET_ORE;
-import static strangequark.exploringfabric.utils.ModIdentifier.createIdentifier;
+import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModItemGroups {
 
@@ -50,7 +50,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PINK_GARNET_TRAPDOOR);
                         entries.add(ModBlocks.PINK_GARNET_BUTTON);
                         entries.add(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
-                        entries.add(ModBlocks.PINK_GARNET_LAMP_BLOCK);
+                        entries.add(ModBlocks.PINK_GARNET_LAMP);
                     })
                     .build());
 
@@ -64,6 +64,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CAULIFLOWER);
                         entries.add(ModItems.STARLIGHT_ASHES);
                         entries.add(ModBlocks.MAGIC_BLOCK);
+                        entries.add(ModBlocks.PINK_GARNET_LAMP);
                     })
                     .build());
 
