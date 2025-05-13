@@ -6,7 +6,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import strangequark.exploringfabric.item.ModItems;
-import strangequark.exploringfabric.utils.ModTags;
+import strangequark.exploringfabric.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 

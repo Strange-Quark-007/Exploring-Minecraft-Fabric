@@ -36,16 +36,15 @@ public class ModModelProvider extends FabricModelProvider {
         pinkGarnetPool.pressurePlate(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
 
         WeightedVariant offVariant = BlockStateModelGenerator.createWeightedVariant(
-                TexturedModel.CUBE_ALL.upload(ModBlocks.PINK_GARNET_LAMP_BLOCK, blockStateModelGenerator.modelCollector)
+                TexturedModel.CUBE_ALL.upload(ModBlocks.PINK_GARNET_LAMP, blockStateModelGenerator.modelCollector)
         );
         WeightedVariant onVariant = BlockStateModelGenerator.createWeightedVariant(
-                blockStateModelGenerator.createSubModel(ModBlocks.PINK_GARNET_LAMP_BLOCK,
-                        "_on", Models.CUBE_ALL, TextureMap::all)
+                blockStateModelGenerator.createSubModel(ModBlocks.PINK_GARNET_LAMP, "_on", Models.CUBE_ALL, TextureMap::all)
         );
 
         blockStateModelGenerator.blockStateCollector.accept(
                 VariantsBlockModelDefinitionCreator
-                        .of(ModBlocks.PINK_GARNET_LAMP_BLOCK)
+                        .of(ModBlocks.PINK_GARNET_LAMP)
                         .with(BlockStateModelGenerator.createBooleanModelMap(PinkGarnetLampBlock.CLICKED, onVariant, offVariant))
         );
     }
