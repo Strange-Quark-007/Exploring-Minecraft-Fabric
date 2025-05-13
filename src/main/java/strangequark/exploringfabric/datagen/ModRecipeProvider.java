@@ -10,6 +10,7 @@ import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKeys;
@@ -60,6 +61,46 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 .input('D', Blocks.DIAMOND_BLOCK)
                                 .input('P', ModBlocks.PINK_GARNET_BLOCK),
                         ModBlocks.PINK_GARNET_BLOCK);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.PINK_GARNET_SWORD)
+                                .pattern(" P ")
+                                .pattern(" P ")
+                                .pattern(" S ")
+                                .input('P', ModItems.PINK_GARNET)
+                                .input('S', Items.STICK),
+                        ModItems.PINK_GARNET);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.PINK_GARNET_PICKAXE)
+                                .pattern("PPP")
+                                .pattern(" S ")
+                                .pattern(" S ")
+                                .input('P', ModItems.PINK_GARNET)
+                                .input('S', Items.STICK),
+                        ModItems.PINK_GARNET);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.PINK_GARNET_AXE)
+                                .pattern("PP ")
+                                .pattern("PS ")
+                                .pattern(" S ")
+                                .input('P', ModItems.PINK_GARNET)
+                                .input('S', Items.STICK),
+                        ModItems.PINK_GARNET);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.PINK_GARNET_SHOVEL)
+                                .pattern(" P ")
+                                .pattern(" S ")
+                                .pattern(" S ")
+                                .input('P', ModItems.PINK_GARNET)
+                                .input('S', Items.STICK),
+                        ModItems.PINK_GARNET);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.PINK_GARNET_HOE)
+                                .pattern("PP ")
+                                .pattern(" S ")
+                                .pattern(" S ")
+                                .input('P', ModItems.PINK_GARNET)
+                                .input('S', Items.STICK),
+                        ModItems.PINK_GARNET);
             }
 
             private void offerWithCriterion(@NotNull CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
