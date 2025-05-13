@@ -16,6 +16,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.component.ModDataComponentTypes;
 
 import java.util.Map;
 
@@ -44,6 +45,8 @@ public class ChiselItem extends Item {
                     assert context.getPlayer() != null;
                     context.getPlayer().sendEquipmentBreakStatus(item, EquipmentSlot.MAINHAND);
                 });
+                context.getStack().set(ModDataComponentTypes.COORDINATES, context.getBlockPos());
+                context.getStack().set(ModDataComponentTypes.BLOCK, clickedBlock);
 
                 world.playSound(null, context.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS);
             }

@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.component.ModDataComponentTypes;
 import strangequark.exploringfabric.item.ModItemGroups;
 import strangequark.exploringfabric.item.ModItems;
 
@@ -18,6 +19,7 @@ public class ExploringFabric implements ModInitializer {
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
         ModItemGroups.registerItemGroups();
+        ModDataComponentTypes.registerDataComponentTypes();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
         FuelRegistryEvents.BUILD.register((builder, context) ->
