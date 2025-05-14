@@ -38,6 +38,8 @@
   "itemgroup.exploringfabric.pink_garnet_items": "Pink Garnet Items",
   "tag.item.exploringfabric.incorrect_for_pink_garnet_tool": "Incorrect for Pink Garnet Tools",
   "tag.item.exploringfabric.needs_pink_garnet_tool": "Needs Pink Garnet Tools",
+  "tag.item.exploringfabric.netherite_armor": "Netherite Armor Items",
+  "tag.item.exploringfabric.pink_garnet_armor": "Pink Garnet Armor Items",
   "tag.item.exploringfabric.pink_garnet_repair": "Repair with Pink Garnet",
   "tag.item.exploringfabric.transformable_items": "Transformable Items"
 }
