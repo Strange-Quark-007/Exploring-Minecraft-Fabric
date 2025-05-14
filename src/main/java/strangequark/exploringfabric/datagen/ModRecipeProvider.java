@@ -99,6 +99,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 .input('P', ModItems.PINK_GARNET)
                                 .input('S', Items.STICK),
                         ModItems.PINK_GARNET);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.PINK_GARNET_HAMMER)
+                                .pattern("PPP")
+                                .pattern(" S ")
+                                .pattern(" S ")
+                                .input('P', ModBlocks.PINK_GARNET_BLOCK)
+                                .input('S', Items.STICK),
+                        ModBlocks.PINK_GARNET_BLOCK);
             }
 
             private void offerWithCriterion(CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
