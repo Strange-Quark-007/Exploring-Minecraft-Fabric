@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.model.json.WeightedVariant;
+import strangequark.exploringfabric.armor.ModEquipmentAssetKeys;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.item.ModItems;
@@ -63,5 +64,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.PINK_GARNET_AXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.PINK_GARNET_HOE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.PINK_GARNET_HAMMER, Models.HANDHELD);
+
+        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_HELMET, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_CHESTPLATE, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_LEGGINGS, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_BOOTS, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
     }
 }
