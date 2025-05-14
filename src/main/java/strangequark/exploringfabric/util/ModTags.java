@@ -22,6 +22,9 @@ public class ModTags {
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
         public static final TagKey<Item> PINK_GARNET_REPAIR = createTag("pink_garnet_repair");
 
+        public static final TagKey<Item> PINK_GARNET_ARMOR = createTag("pink_garnet_armor");
+        public static final TagKey<Item> NETHERITE_ARMOR = createTag("netherite_armor");
+
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, createIdentifier(name));
         }

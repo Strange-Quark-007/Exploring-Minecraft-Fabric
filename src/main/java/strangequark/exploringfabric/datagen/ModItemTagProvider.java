@@ -37,5 +37,17 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PINK_GARNET_CHESTPLATE)
                 .add(ModItems.PINK_GARNET_LEGGINGS)
                 .add(ModItems.PINK_GARNET_BOOTS);
+
+        getOrCreateTagBuilder(ModTags.Items.PINK_GARNET_ARMOR)
+                .add(ModItems.PINK_GARNET_HELMET)
+                .add(ModItems.PINK_GARNET_CHESTPLATE)
+                .add(ModItems.PINK_GARNET_LEGGINGS)
+                .add(ModItems.PINK_GARNET_BOOTS);
+
+        getOrCreateTagBuilder(ModTags.Items.NETHERITE_ARMOR)
+                .add(Items.NETHERITE_HELMET)
+                .add(Items.NETHERITE_CHESTPLATE)
+                .add(Items.NETHERITE_LEGGINGS)
+                .add(Items.NETHERITE_BOOTS);
     }
 }
