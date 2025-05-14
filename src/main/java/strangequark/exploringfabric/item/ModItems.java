@@ -8,6 +8,7 @@ import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.food.ModConsumableComponents;
 import strangequark.exploringfabric.food.ModFoodComponents;
 import strangequark.exploringfabric.item.custom.ChiselItem;
+import strangequark.exploringfabric.item.custom.HammerItem;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 import static strangequark.exploringfabric.util.ModRegistryKeys.Items.createRegistryKey;
@@ -25,6 +26,8 @@ public class ModItems {
     public static final Item PINK_GARNET_AXE = createItem("pink_garnet_axe", settings -> new AxeItem(ModToolMaterials.PINK_GARNET, 5.0F, -3.0F, settings));
     public static final Item PINK_GARNET_SHOVEL = createItem("pink_garnet_shovel", settings -> new ShovelItem(ModToolMaterials.PINK_GARNET, 1.5F, -3.0F, settings));
     public static final Item PINK_GARNET_HOE = createItem("pink_garnet_hoe", settings -> new HoeItem(ModToolMaterials.PINK_GARNET, -3.0F, 0.0F, settings));
+
+    public static final Item PINK_GARNET_HAMMER = createItem("pink_garnet_hammer", settings -> new HammerItem(settings.pickaxe(ModToolMaterials.PINK_GARNET, 7.0F, -3.3F)));
 
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));

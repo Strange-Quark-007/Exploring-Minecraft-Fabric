@@ -30,5 +30,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.SHOVELS).add(ModItems.PINK_GARNET_SHOVEL);
         getOrCreateTagBuilder(ItemTags.AXES).add(ModItems.PINK_GARNET_AXE);
         getOrCreateTagBuilder(ItemTags.HOES).add(ModItems.PINK_GARNET_HOE);
+        getOrCreateTagBuilder(ItemTags.PICKAXES).add(ModItems.PINK_GARNET_HAMMER);
     }
 }

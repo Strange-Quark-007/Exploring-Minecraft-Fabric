@@ -14,6 +14,7 @@
   "item.exploringfabric.pink_garnet_door": "Pink Garnet Door",
   "item.exploringfabric.pink_garnet_fence": "Pink Garnet Fence",
   "item.exploringfabric.pink_garnet_fence_gate": "Pink Garnet Fence Gate",
+  "item.exploringfabric.pink_garnet_hammer": "Pink Garnet Hammer",
   "item.exploringfabric.pink_garnet_hoe": "Pink Garnet Hoe",
   "item.exploringfabric.pink_garnet_lamp": "Pink Garnet Lamp",
   "item.exploringfabric.pink_garnet_ore": "Pink Garnet Ore",
@@ -33,5 +34,6 @@
   "itemgroup.exploringfabric.pink_garnet_items": "Pink Garnet Items",
   "tag.item.exploringfabric.incorrect_for_pink_garnet_tool": "Incorrect for Pink Garnet Tools",
   "tag.item.exploringfabric.needs_pink_garnet_tool": "Needs Pink Garnet Tools",
+  "tag.item.exploringfabric.pink_garnet_repair": "Repair with Pink Garnet",
   "tag.item.exploringfabric.transformable_items": "Transformable Items"
 }
