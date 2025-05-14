@@ -2,9 +2,11 @@ package strangequark.exploringfabric.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
+import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import strangequark.exploringfabric.ExploringFabric;
+import strangequark.exploringfabric.armor.ModArmorMaterials;
 import strangequark.exploringfabric.food.ModConsumableComponents;
 import strangequark.exploringfabric.food.ModFoodComponents;
 import strangequark.exploringfabric.item.custom.ChiselItem;
@@ -28,6 +30,11 @@ public class ModItems {
     public static final Item PINK_GARNET_HOE = createItem("pink_garnet_hoe", settings -> new HoeItem(ModToolMaterials.PINK_GARNET, -3.0F, 0.0F, settings));
 
     public static final Item PINK_GARNET_HAMMER = createItem("pink_garnet_hammer", settings -> new HammerItem(settings.pickaxe(ModToolMaterials.PINK_GARNET, 7.0F, -3.3F)));
+
+    public static final Item PINK_GARNET_HELMET = createItem("pink_garnet_helmet", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.HELMET)));
+    public static final Item PINK_GARNET_CHESTPLATE = createItem("pink_garnet_chestplate", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.CHESTPLATE)));
+    public static final Item PINK_GARNET_LEGGINGS = createItem("pink_garnet_leggings", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.LEGGINGS)));
+    public static final Item PINK_GARNET_BOOTS = createItem("pink_garnet_boots", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.BOOTS)));
 
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
