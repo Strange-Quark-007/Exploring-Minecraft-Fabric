@@ -36,6 +36,8 @@ public class ModItems {
     public static final Item PINK_GARNET_LEGGINGS = createItem("pink_garnet_leggings", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.LEGGINGS)));
     public static final Item PINK_GARNET_BOOTS = createItem("pink_garnet_boots", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.BOOTS)));
 
+    public static final Item PINK_GARNET_HORSE_ARMOR = createItem("pink_garnet_horse_armor", settings -> new Item(settings.horseArmor(ModArmorMaterials.PINK_GARNET)));
+
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
         return registerItem(name, itemCreator.create(settings));
