@@ -1,5 +1,10 @@
 {
   "layers": {
+    "horse_body": [
+      {
+        "texture": "exploringfabric:pink_garnet"
+      }
+    ],
     "humanoid": [
       {
         "texture": "exploringfabric:pink_garnet"
