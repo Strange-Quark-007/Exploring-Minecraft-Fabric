@@ -49,5 +49,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.NETHERITE_CHESTPLATE)
                 .add(Items.NETHERITE_LEGGINGS)
                 .add(Items.NETHERITE_BOOTS);
+
+        getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
+                .add(ModItems.PINK_GARNET);
     }
 }

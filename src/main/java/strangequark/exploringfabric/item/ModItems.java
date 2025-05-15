@@ -11,13 +11,14 @@ import strangequark.exploringfabric.food.ModConsumableComponents;
 import strangequark.exploringfabric.food.ModFoodComponents;
 import strangequark.exploringfabric.item.custom.ChiselItem;
 import strangequark.exploringfabric.item.custom.HammerItem;
+import strangequark.exploringfabric.trim.ModTrimMaterials;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 import static strangequark.exploringfabric.util.ModRegistryKeys.Items.createRegistryKey;
 
 public class ModItems {
     public static final Item RAW_PINK_GARNET = createItem("raw_pink_garnet", Item::new);
-    public static final Item PINK_GARNET = createItem("pink_garnet", Item::new);
+    public static final Item PINK_GARNET = createItem("pink_garnet", settings -> new Item(settings.trimMaterial(ModTrimMaterials.PINK_GARNET)));
 
     public static final Item CHISEL = createItem("chisel", settings -> new ChiselItem(settings.maxDamage(32)));
     public static final Item CAULIFLOWER = createItem("cauliflower", settings -> new Item(settings.food(ModFoodComponents.CAULIFLOWER, ModConsumableComponents.CAULIFLOWER)));
@@ -38,6 +39,8 @@ public class ModItems {
 
     public static final Item PINK_GARNET_HORSE_ARMOR = createItem("pink_garnet_horse_armor", settings -> new Item(settings.horseArmor(ModArmorMaterials.PINK_GARNET)));
 
+    public static final Item QUARK_ARMOR_TRIM_SMITHING_TEMPLATE = createItem("quark_armor_trim_smithing_template", SmithingTemplateItem::of);
+
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
         return registerItem(name, itemCreator.create(settings));
@@ -53,7 +56,5 @@ public class ModItems {
             entries.add(PINK_GARNET);
             entries.add(RAW_PINK_GARNET);
         });
-
-
     }
 }

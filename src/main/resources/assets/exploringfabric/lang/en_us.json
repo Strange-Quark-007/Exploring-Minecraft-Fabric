@@ -31,6 +31,7 @@
   "item.exploringfabric.pink_garnet_sword": "Pink Garnet Sword",
   "item.exploringfabric.pink_garnet_trapdoor": "Pink Garnet Trapdoor",
   "item.exploringfabric.pink_garnet_wall": "Pink Garnet Wall",
+  "item.exploringfabric.quark_armor_trim_smithing_template": "Quark Armor Trim",
   "item.exploringfabric.raw_pink_garnet": "Raw Pink Garnet",
   "item.exploringfabric.raw_pink_garnet_block": "Block of Raw Pink Garnet",
   "item.exploringfabric.starlight_ashes": "Starlight Ashes",
@@ -42,5 +43,7 @@
   "tag.item.exploringfabric.netherite_armor": "Netherite Armor Items",
   "tag.item.exploringfabric.pink_garnet_armor": "Pink Garnet Armor Items",
   "tag.item.exploringfabric.pink_garnet_repair": "Repair with Pink Garnet",
-  "tag.item.exploringfabric.transformable_items": "Transformable Items"
+  "tag.item.exploringfabric.transformable_items": "Transformable Items",
+  "trim_material.exploringfabric.pink_garnet": "Pink Garnet Material",
+  "trim_pattern.exploringfabric.quark": "Quark Armor Trim"
 }

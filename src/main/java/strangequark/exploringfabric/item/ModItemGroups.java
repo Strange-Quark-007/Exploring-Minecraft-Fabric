@@ -34,6 +34,7 @@ public class ModItemGroups {
                         entries.add(ModItems.PINK_GARNET_LEGGINGS);
                         entries.add(ModItems.PINK_GARNET_BOOTS);
                         entries.add(ModItems.PINK_GARNET_HORSE_ARMOR);
+                        entries.add(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE);
                     })
                     .build());
 

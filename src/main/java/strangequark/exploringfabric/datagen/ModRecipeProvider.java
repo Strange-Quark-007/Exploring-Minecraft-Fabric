@@ -13,13 +13,17 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.item.ModItems;
+import strangequark.exploringfabric.trim.ModTrimPatterns;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+
+import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -107,6 +111,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 .input('P', ModBlocks.PINK_GARNET_BLOCK)
                                 .input('S', Items.STICK),
                         ModBlocks.PINK_GARNET_BLOCK);
+
+                offerSmithingTrimRecipe(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE, ModTrimPatterns.QUARK,
+                        RegistryKey.of(RegistryKeys.RECIPE, createIdentifier("quark_armor_trim_smithing_template_smithing_trim")));
+
+                offerSmithingTemplateCopyingRecipe(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE, ModBlocks.PINK_GARNET_BLOCK);
             }
 
             private void offerWithCriterion(CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
