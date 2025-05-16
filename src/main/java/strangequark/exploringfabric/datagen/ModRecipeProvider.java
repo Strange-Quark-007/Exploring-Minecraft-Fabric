@@ -116,6 +116,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         RegistryKey.of(RegistryKeys.RECIPE, createIdentifier("quark_armor_trim_smithing_template_smithing_trim")));
 
                 offerSmithingTemplateCopyingRecipe(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE, ModBlocks.PINK_GARNET_BLOCK);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.QUARK_BOW)
+                                .pattern("ST ")
+                                .pattern("SPT")
+                                .pattern("ST ")
+                                .input('P', ModItems.PINK_GARNET)
+                                .input('S', Items.STRING)
+                                .input('T', Items.STICK),
+                        ModItems.PINK_GARNET);
+
             }
 
             private void offerWithCriterion(CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
