@@ -3,10 +3,14 @@ package strangequark.exploringfabric.datagen;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;
+import net.minecraft.client.render.item.model.ItemModel;
+import net.minecraft.client.render.item.property.bool.HasComponentProperty;
 import net.minecraft.client.render.model.json.WeightedVariant;
+import net.minecraft.item.Item;
 import strangequark.exploringfabric.armor.ModEquipmentAssetKeys;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
+import strangequark.exploringfabric.component.ModDataComponentTypes;
 import strangequark.exploringfabric.item.ModItems;
 
 public class ModModelProvider extends FabricModelProvider {
@@ -54,7 +58,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.CHISEL, Models.GENERATED);
+        // itemModelGenerator.register(ModItems.CHISEL, Models.GENERATED); // Regular Item Registration without predicate
         itemModelGenerator.register(ModItems.CAULIFLOWER, Models.GENERATED);
         itemModelGenerator.register(ModItems.STARLIGHT_ASHES, Models.GENERATED);
 
@@ -72,5 +76,16 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.PINK_GARNET_HORSE_ARMOR, Models.GENERATED);
         itemModelGenerator.register(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE, Models.GENERATED);
+
+        Item chisel = ModItems.CHISEL;
+        ItemModel.Unbaked unusedChisel = ItemModels.basic(itemModelGenerator.upload(chisel, Models.GENERATED));
+        ItemModel.Unbaked usedChisel = ItemModels.basic(itemModelGenerator.registerSubModel(chisel, "_used", Models.GENERATED));
+
+        itemModelGenerator.registerCondition(
+                chisel,
+                new HasComponentProperty(ModDataComponentTypes.COORDINATES, true),
+                usedChisel,
+                unusedChisel
+        );
     }
 }
