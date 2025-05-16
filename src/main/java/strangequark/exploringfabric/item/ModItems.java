@@ -41,6 +41,8 @@ public class ModItems {
 
     public static final Item QUARK_ARMOR_TRIM_SMITHING_TEMPLATE = createItem("quark_armor_trim_smithing_template", SmithingTemplateItem::of);
 
+    public static final Item QUARK_BOW = createItem("quark_bow", settings -> new BowItem(settings.maxDamage(250)));
+
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
         return registerItem(name, itemCreator.create(settings));
