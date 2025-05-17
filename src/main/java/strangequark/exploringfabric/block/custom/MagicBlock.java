@@ -8,18 +8,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import strangequark.exploringfabric.sound.ModSounds;
 import strangequark.exploringfabric.util.ModTags;
 
 public class MagicBlock extends Block {
 
+    public MagicBlock(Settings settings) {
+        super(settings);
+    }
+
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        world.playSound(player, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.BLOCKS);
+        world.playSound(player, pos, ModSounds.MAGIC_BLOCK_HIT, SoundCategory.BLOCKS);
         return ActionResult.SUCCESS;
     }
 
@@ -29,11 +33,10 @@ public class MagicBlock extends Block {
             if (!isValidItem(itemEntity.getStack())) {
                 return;
             }
-
             itemEntity.setStack(new ItemStack(Items.DIAMOND, itemEntity.getStack().getCount()));
 
             if (!world.isClient()) {
-                world.playSound(entity, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE, SoundCategory.BLOCKS);
+                world.playSound(entity, pos, ModSounds.MAGIC_BLOCK_STEP, SoundCategory.BLOCKS);
             }
         }
         super.onSteppedOn(world, pos, state, entity);
@@ -43,7 +46,5 @@ public class MagicBlock extends Block {
         return stack.isIn(ModTags.Items.TRANSFORMABLE_ITEMS);
     }
 
-    public MagicBlock(Settings settings) {
-        super(settings);
-    }
+
 }
