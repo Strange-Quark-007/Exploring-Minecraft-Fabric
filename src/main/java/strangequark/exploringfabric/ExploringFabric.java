@@ -9,7 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.component.ModDataComponentTypes;
-import strangequark.exploringfabric.effect.ArmourEffectHandler;
+import strangequark.exploringfabric.effect.ArmorEffectHandler;
+import strangequark.exploringfabric.effect.ModEffects;
 import strangequark.exploringfabric.item.ModItemGroups;
 import strangequark.exploringfabric.item.ModItems;
 import strangequark.exploringfabric.sound.ModSounds;
@@ -26,12 +27,13 @@ public class ExploringFabric implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ModDataComponentTypes.registerDataComponentTypes();
         ModSounds.registerSounds();
+        ModEffects.registerEffects();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
         FuelRegistryEvents.BUILD.register((builder, context) -> builder.add(ModItems.STARLIGHT_ASHES, 4 * 10 * 20));
 
         PlayerBlockBreakEvents.BEFORE.register(new HammerUsageEvent());
 
-        ServerTickEvents.END_SERVER_TICK.register(new ArmourEffectHandler());
+        ServerTickEvents.END_SERVER_TICK.register(new ArmorEffectHandler());
     }
 }
