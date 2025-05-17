@@ -44,6 +44,25 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PINK_GARNET_LEGGINGS)
                 .add(ModItems.PINK_GARNET_BOOTS);
 
+        getOrCreateTagBuilder(ItemTags.ARMOR_ENCHANTABLE)
+                .addTag(ModTags.Items.PINK_GARNET_ARMOR);
+
+        getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
+                .add(ModItems.PINK_GARNET_HELMET);
+
+        getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
+                .add(ModItems.PINK_GARNET_CHESTPLATE);
+
+        getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
+                .add(ModItems.PINK_GARNET_LEGGINGS);
+
+        getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
+                .add(ModItems.PINK_GARNET_BOOTS);
+
+        getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
+                .addTag(ModTags.Items.PINK_GARNET_ARMOR)
+                .add(ModItems.QUARK_BOW);
+
         getOrCreateTagBuilder(ModTags.Items.NETHERITE_ARMOR)
                 .add(Items.NETHERITE_HELMET)
                 .add(Items.NETHERITE_CHESTPLATE)
@@ -52,5 +71,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
                 .add(ModItems.PINK_GARNET);
+
+        getOrCreateTagBuilder(ItemTags.BOW_ENCHANTABLE)
+                .add(ModItems.QUARK_BOW);
     }
 }
