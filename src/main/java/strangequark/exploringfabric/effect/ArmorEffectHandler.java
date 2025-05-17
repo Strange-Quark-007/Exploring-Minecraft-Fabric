@@ -14,7 +14,7 @@ import strangequark.exploringfabric.util.ModTags;
 import java.util.List;
 import java.util.Map;
 
-public class ArmourEffectHandler implements ServerTickEvents.EndTick {
+public class ArmorEffectHandler implements ServerTickEvents.EndTick {
 
     private static final int EFFECT_REFRESH_INTERVAL = 80;
 
