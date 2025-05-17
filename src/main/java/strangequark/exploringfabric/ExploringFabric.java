@@ -12,6 +12,7 @@ import strangequark.exploringfabric.component.ModDataComponentTypes;
 import strangequark.exploringfabric.effect.ArmourEffectHandler;
 import strangequark.exploringfabric.item.ModItemGroups;
 import strangequark.exploringfabric.item.ModItems;
+import strangequark.exploringfabric.sound.ModSounds;
 import strangequark.exploringfabric.util.HammerUsageEvent;
 
 public class ExploringFabric implements ModInitializer {
@@ -24,6 +25,7 @@ public class ExploringFabric implements ModInitializer {
         ModBlocks.registerModBlocks();
         ModItemGroups.registerItemGroups();
         ModDataComponentTypes.registerDataComponentTypes();
+        ModSounds.registerSounds();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
         FuelRegistryEvents.BUILD.register((builder, context) -> builder.add(ModItems.STARLIGHT_ASHES, 4 * 10 * 20));

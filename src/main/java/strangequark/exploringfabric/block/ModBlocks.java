@@ -11,6 +11,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.block.custom.MagicBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
+import strangequark.exploringfabric.sound.ModSounds;
 
 import static strangequark.exploringfabric.item.ModItems.createItem;
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
@@ -32,7 +33,7 @@ public class ModBlocks {
                     settings.strength(4f).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)));
 
     public static final Block MAGIC_BLOCK = createBlock("magic_block", settings ->
-            new MagicBlock(settings.strength(4f).requiresTool()));
+            new MagicBlock(settings.strength(4f).requiresTool().sounds(ModSounds.MAGIC_BLOCK_SOUNDS)));
 
     public static final Block PINK_GARNET_SLAB = createBlock("pink_garnet_slab", settings ->
             new SlabBlock(settings.strength(2f).requiresTool()));

@@ -1,0 +1,38 @@
+{
+  "chisel_use": {
+    "subtitle": "sounds.exploringfabric.chisel_use",
+    "sounds": [
+      "exploringfabric:chisel_use"
+    ]
+  },
+  "magic_block_break": {
+    "subtitle": "sounds.exploringfabric.magic_block_break",
+    "sounds": [
+      "exploringfabric:magic_block_break"
+    ]
+  },
+  "magic_block_step": {
+    "subtitle": "sounds.exploringfabric.magic_block_step",
+    "sounds": [
+      "exploringfabric:magic_block_step"
+    ]
+  },
+  "magic_block_place": {
+    "subtitle": "sounds.exploringfabric.magic_block_place",
+    "sounds": [
+      "exploringfabric:magic_block_place"
+    ]
+  },
+  "magic_block_hit": {
+    "subtitle": "sounds.exploringfabric.magic_block_hit",
+    "sounds": [
+      "exploringfabric:magic_block_hit"
+    ]
+  },
+  "magic_block_fall": {
+    "subtitle": "sounds.exploringfabric.magic_block_fall",
+    "sounds": [
+      "exploringfabric:magic_block_fall"
+    ]
+  }
+}

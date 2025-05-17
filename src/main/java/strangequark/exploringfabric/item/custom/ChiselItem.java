@@ -12,19 +12,19 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
-import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.component.ModDataComponentTypes;
+import strangequark.exploringfabric.sound.ModSounds;
 
 import java.util.Map;
 
 public class ChiselItem extends Item {
     private static final Map<Block, Block> CHISEL_MAP = Map.of(
             Blocks.STONE, Blocks.STONE_BRICKS,
-            Blocks.END_STONE, Blocks.END_STONE_BRICKS,
-            ModBlocks.RAW_PINK_GARNET_BLOCK, ModBlocks.PINK_GARNET_BLOCK
+            Blocks.DEEPSLATE, Blocks.DEEPSLATE_BRICKS,
+            Blocks.POLISHED_BLACKSTONE, Blocks.POLISHED_BLACKSTONE_BRICKS,
+            Blocks.END_STONE, Blocks.END_STONE_BRICKS
     );
 
     public ChiselItem(Settings settings) {
@@ -33,7 +33,6 @@ public class ChiselItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-
         World world = context.getWorld();
         Block clickedBlock = world.getBlockState(context.getBlockPos()).getBlock();
 
@@ -48,7 +47,7 @@ public class ChiselItem extends Item {
                 context.getStack().set(ModDataComponentTypes.COORDINATES, context.getBlockPos());
                 context.getStack().set(ModDataComponentTypes.BLOCK, clickedBlock);
 
-                world.playSound(null, context.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS);
+                world.playSound(null, context.getBlockPos(), ModSounds.CHISEL_USE, SoundCategory.BLOCKS);
             }
         }
         return ActionResult.SUCCESS;
