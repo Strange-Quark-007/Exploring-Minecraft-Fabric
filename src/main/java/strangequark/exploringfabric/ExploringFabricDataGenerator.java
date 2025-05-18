@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import strangequark.exploringfabric.datagen.*;
+import strangequark.exploringfabric.enchantment.ModEnchantments;
 import strangequark.exploringfabric.trim.ModTrimMaterials;
 import strangequark.exploringfabric.trim.ModTrimPatterns;
 
@@ -25,6 +26,7 @@ public class ExploringFabricDataGenerator implements DataGeneratorEntrypoint {
     public void buildRegistry(RegistryBuilder registryBuilder) {
         registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ModTrimMaterials::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.TRIM_PATTERN, ModTrimPatterns::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
         DataGeneratorEntrypoint.super.buildRegistry(registryBuilder);
     }
 }
