@@ -14,6 +14,8 @@ import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.component.ModDataComponentTypes;
 import strangequark.exploringfabric.effect.ArmorEffectHandler;
 import strangequark.exploringfabric.effect.ModEffects;
+import strangequark.exploringfabric.enchantment.ModEnchantmentEffects;
+import strangequark.exploringfabric.enchantment.ModEnchantments;
 import strangequark.exploringfabric.item.ModItemGroups;
 import strangequark.exploringfabric.item.ModItems;
 import strangequark.exploringfabric.potion.ModPotions;
@@ -33,6 +35,8 @@ public class ExploringFabric implements ModInitializer {
         ModSounds.registerSounds();
         ModEffects.registerEffects();
         ModPotions.registerPotions();
+        ModEnchantments.registerEnchantments();
+        ModEnchantmentEffects.registerEnchantmentEffects();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
         FuelRegistryEvents.BUILD.register((builder, context) -> builder.add(ModItems.STARLIGHT_ASHES, 4 * 10 * 20));

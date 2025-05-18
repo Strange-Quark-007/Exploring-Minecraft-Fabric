@@ -1,5 +1,6 @@
 {
   "effect.exploringfabric.slimey": "Slimey",
+  "enchantment.exploringfabric.lightning_striker": "Lightning Striker",
   "item.exploringfabric.cauliflower": "Cauliflower",
   "item.exploringfabric.chisel": "Chisel",
   "item.exploringfabric.chisel.tooltip": "Press §eShift§r for more Information!",
@@ -54,6 +55,7 @@
   "tag.item.exploringfabric.netherite_armor": "Netherite Armor Items",
   "tag.item.exploringfabric.pink_garnet_armor": "Pink Garnet Armor Items",
   "tag.item.exploringfabric.pink_garnet_repair": "Repair with Pink Garnet",
+  "tag.item.exploringfabric.lighting_striker_enchantable": "Items enchantable with Lightning Striker",
   "tag.item.exploringfabric.transformable_items": "Transformable Items",
   "trim_material.exploringfabric.pink_garnet": "Pink Garnet Material",
   "trim_pattern.exploringfabric.quark": "Quark Armor Trim"
