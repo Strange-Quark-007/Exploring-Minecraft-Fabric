@@ -10,6 +10,7 @@ import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.item.Item;
 import strangequark.exploringfabric.armor.ModEquipmentAssetKeys;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.block.custom.CauliflowersBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.component.ModDataComponentTypes;
 import strangequark.exploringfabric.item.ModItems;
@@ -53,14 +54,18 @@ public class ModModelProvider extends FabricModelProvider {
                         .of(ModBlocks.PINK_GARNET_LAMP)
                         .with(BlockStateModelGenerator.createBooleanModelMap(PinkGarnetLampBlock.CLICKED, onVariant, offVariant))
         );
+
+        blockStateModelGenerator.registerCrop(ModBlocks.CAULIFLOWERS, CauliflowersBlock.AGE, 0, 1, 2, 3, 4, 5, 6);
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
-        // itemModelGenerator.register(ModItems.CHISEL, Models.GENERATED); // Regular Item Registration without predicate
-        itemModelGenerator.register(ModItems.CAULIFLOWER, Models.GENERATED);
+        /*
+         * itemModelGenerator.register(ModItems.CHISEL, Models.GENERATED); // Regular Item registration without predicate
+         * itemModelGenerator.register(ModItems.CAULIFLOWER, Models.GENERATED); // Registered via block state model generator
+         */
         itemModelGenerator.register(ModItems.STARLIGHT_ASHES, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.PINK_GARNET_SWORD, Models.HANDHELD);
@@ -101,7 +106,5 @@ public class ModModelProvider extends FabricModelProvider {
                 ItemModels.rangeDispatch(new UseDurationProperty(false), 0.05F, unbakedBow2, ItemModels.rangeDispatchEntry(unbakedBow3, 0.65F), ItemModels.rangeDispatchEntry(unbakedBow4, 0.9F)),
                 unbakedBow
         );
-
-
     }
 }

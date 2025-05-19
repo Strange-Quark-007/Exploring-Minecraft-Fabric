@@ -2,6 +2,7 @@ package strangequark.exploringfabric.block;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
@@ -9,6 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import strangequark.exploringfabric.ExploringFabric;
+import strangequark.exploringfabric.block.custom.CauliflowersBlock;
 import strangequark.exploringfabric.block.custom.MagicBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.sound.ModSounds;
@@ -66,13 +68,31 @@ public class ModBlocks {
             new PinkGarnetLampBlock(settings.strength(2f).requiresTool()
                     .luminance(state -> state.get(PinkGarnetLampBlock.CLICKED) ? 15 : 0)));
 
+    public static final Block CAULIFLOWERS = createBlock("cauliflowers", settings ->
+                    new CauliflowersBlock(settings
+                            .mapColor(MapColor.DARK_GREEN)
+                            .noCollision()
+                            .ticksRandomly()
+                            .breakInstantly()
+                            .sounds(BlockSoundGroup.CROP)
+                            .pistonBehavior(PistonBehavior.DESTROY)),
+            false
+    );
+
     private static <T extends Block> T createBlock(String name, BlockFactory<T> blockCreator) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
-        return registerBlock(name, blockCreator.create(settings));
+        return registerBlock(name, blockCreator.create(settings), true);
     }
 
-    private static <T extends Block> T registerBlock(String name, T block) {
-        createItem(name, settings -> new BlockItem(block, settings));
+    private static <T extends Block> T createBlock(String name, BlockFactory<T> blockCreator, boolean registerItem) {
+        AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
+        return registerBlock(name, blockCreator.create(settings), registerItem);
+    }
+
+    private static <T extends Block> T registerBlock(String name, T block, boolean registerItem) {
+        if (registerItem) {
+            createItem(name, settings -> new BlockItem(block, settings));
+        }
         return Registry.register(Registries.BLOCK, createIdentifier(name), block);
     }
 

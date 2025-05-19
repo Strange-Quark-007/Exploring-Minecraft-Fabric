@@ -11,5 +11,6 @@ public class ExploringFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModTooltips.registerModTooltips();
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.PINK_GARNET_DOOR, ModBlocks.PINK_GARNET_TRAPDOOR);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.CAULIFLOWERS);
     }
 }

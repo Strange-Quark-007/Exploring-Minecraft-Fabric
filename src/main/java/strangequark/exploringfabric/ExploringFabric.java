@@ -39,10 +39,10 @@ public class ExploringFabric implements ModInitializer {
         ModEnchantmentEffects.registerEnchantmentEffects();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
+
         FuelRegistryEvents.BUILD.register((builder, context) -> builder.add(ModItems.STARLIGHT_ASHES, 4 * 10 * 20));
 
         PlayerBlockBreakEvents.BEFORE.register(new HammerUsageEvent());
-
         ServerTickEvents.END_SERVER_TICK.register(new ArmorEffectHandler());
 
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder ->
