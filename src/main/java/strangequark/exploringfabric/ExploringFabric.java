@@ -21,6 +21,7 @@ import strangequark.exploringfabric.item.ModItems;
 import strangequark.exploringfabric.potion.ModPotions;
 import strangequark.exploringfabric.sound.ModSounds;
 import strangequark.exploringfabric.util.HammerUsageEvent;
+import strangequark.exploringfabric.world.gen.ModWorldGeneration;
 
 public class ExploringFabric implements ModInitializer {
     public static final String MOD_ID = "exploringfabric";
@@ -37,6 +38,8 @@ public class ExploringFabric implements ModInitializer {
         ModPotions.registerPotions();
         ModEnchantments.registerEnchantments();
         ModEnchantmentEffects.registerEnchantmentEffects();
+
+        ModWorldGeneration.generateModWorldGen();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.HONEY_BERRIES, 0.1f);
