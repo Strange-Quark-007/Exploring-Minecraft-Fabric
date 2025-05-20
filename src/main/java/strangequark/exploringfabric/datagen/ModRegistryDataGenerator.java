@@ -17,6 +17,9 @@ public class ModRegistryDataGenerator extends FabricDynamicRegistryProvider {
         entries.addAll(wrapperLookup.getOrThrow(RegistryKeys.TRIM_MATERIAL));
         entries.addAll(wrapperLookup.getOrThrow(RegistryKeys.TRIM_PATTERN));
         entries.addAll(wrapperLookup.getOrThrow(RegistryKeys.ENCHANTMENT));
+
+        entries.addAll(wrapperLookup.getOrThrow(RegistryKeys.CONFIGURED_FEATURE));
+        entries.addAll(wrapperLookup.getOrThrow(RegistryKeys.PLACED_FEATURE));
     }
 
     @Override

@@ -8,6 +8,8 @@ import strangequark.exploringfabric.datagen.*;
 import strangequark.exploringfabric.enchantment.ModEnchantments;
 import strangequark.exploringfabric.trim.ModTrimMaterials;
 import strangequark.exploringfabric.trim.ModTrimPatterns;
+import strangequark.exploringfabric.world.ModConfiguredFeatures;
+import strangequark.exploringfabric.world.ModPlacedFeatures;
 
 public class ExploringFabricDataGenerator implements DataGeneratorEntrypoint {
     @Override
@@ -27,6 +29,8 @@ public class ExploringFabricDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ModTrimMaterials::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.TRIM_PATTERN, ModTrimPatterns::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
-        DataGeneratorEntrypoint.super.buildRegistry(registryBuilder);
+
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
     }
 }
