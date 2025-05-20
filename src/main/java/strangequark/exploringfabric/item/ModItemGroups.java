@@ -73,6 +73,7 @@ public class ModItemGroups {
                         entries.add(ModItems.STARLIGHT_ASHES);
                         entries.add(ModBlocks.MAGIC_BLOCK);
                         entries.add(ModBlocks.PINK_GARNET_LAMP);
+                        entries.add(ModItems.HONEY_BERRIES);
                     })
                     .build());
 

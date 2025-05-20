@@ -11,6 +11,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.block.custom.CauliflowersBlock;
+import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
 import strangequark.exploringfabric.block.custom.MagicBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.sound.ModSounds;
@@ -77,6 +78,14 @@ public class ModBlocks {
                             .sounds(BlockSoundGroup.CROP)
                             .pistonBehavior(PistonBehavior.DESTROY)),
             false
+    );
+
+    public static final Block HONEY_BERRY_BUSH = createBlock("honey_berry_bush", settings ->
+            new HoneyBerryBushBlock(settings.mapColor(MapColor.DARK_GREEN)
+                    .ticksRandomly()
+                    .noCollision()
+                    .sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
+                    .pistonBehavior(PistonBehavior.DESTROY))
     );
 
     private static <T extends Block> T createBlock(String name, BlockFactory<T> blockCreator) {
