@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import strangequark.exploringfabric.armor.ModEquipmentAssetKeys;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.CauliflowersBlock;
+import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.component.ModDataComponentTypes;
 import strangequark.exploringfabric.item.ModItems;
@@ -56,6 +57,8 @@ public class ModModelProvider extends FabricModelProvider {
         );
 
         blockStateModelGenerator.registerCrop(ModBlocks.CAULIFLOWERS, CauliflowersBlock.AGE, 0, 1, 2, 3, 4, 5, 6);
+
+        blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.HONEY_BERRY_BUSH, BlockStateModelGenerator.CrossType.NOT_TINTED, HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
     }
 
     @Override

@@ -44,6 +44,7 @@ public class ModItems {
 
     public static final Item QUARK_BOW = createItem("quark_bow", settings -> new BowItem(settings.maxDamage(250)));
 
+    public static final Item HONEY_BERRIES = createItem("honey_berries", settings -> new BlockItem(ModBlocks.HONEY_BERRY_BUSH, settings.food(ModFoodComponents.HONEY_BERRIES)));
 
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));

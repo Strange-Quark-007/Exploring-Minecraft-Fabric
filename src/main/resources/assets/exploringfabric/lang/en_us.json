@@ -6,6 +6,7 @@
   "item.exploringfabric.chisel": "Chisel",
   "item.exploringfabric.chisel.tooltip": "Press §eShift§r for more Information!",
   "item.exploringfabric.chisel.tooltip_expanded": "This item chisels §9Blocks§r into §9Bricks.§r",
+  "item.exploringfabric.honey_berries": "Honey Berries",
   "item.exploringfabric.magic_block": "Magic Block",
   "item.exploringfabric.magic_block.tooltip": "This block is very, very §5MAGICAL!§r",
   "item.exploringfabric.magic_block.tooltip_expanded": "This block converts §dPink Garnet§r to §dDiamonds.§r",

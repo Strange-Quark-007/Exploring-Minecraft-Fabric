@@ -39,6 +39,7 @@ public class ExploringFabric implements ModInitializer {
         ModEnchantmentEffects.registerEnchantmentEffects();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.HONEY_BERRIES, 0.1f);
 
         FuelRegistryEvents.BUILD.register((builder, context) -> builder.add(ModItems.STARLIGHT_ASHES, 4 * 10 * 20));
 
