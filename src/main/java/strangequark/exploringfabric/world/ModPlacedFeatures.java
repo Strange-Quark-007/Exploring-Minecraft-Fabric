@@ -14,7 +14,7 @@ import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModPlacedFeatures {
     public static void bootstrap(Registerable<PlacedFeature> featureRegisterable) {
-        var configuredFeatures = featureRegisterable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+        ModOrePlacedFeatures.bootstrap(featureRegisterable);
     }
 
     public static void register(

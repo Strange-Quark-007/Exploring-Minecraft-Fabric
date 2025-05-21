@@ -29,11 +29,19 @@ public class ModBlocks {
 
     public static final Block PINK_GARNET_ORE = createBlock("pink_garnet_ore", settings ->
             new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
-                    settings.strength(4f).requiresTool()));
+                    settings.strength(3f).requiresTool()));
 
     public static final Block PINK_GARNET_DEEPSLATE_ORE = createBlock("pink_garnet_deepslate_ore", settings ->
             new ExperienceDroppingBlock(UniformIntProvider.create(3, 6),
                     settings.strength(4f).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)));
+
+    public static final Block PINK_GARNET_NETHER_ORE = createBlock("pink_garnet_nether_ore", settings ->
+            new ExperienceDroppingBlock(UniformIntProvider.create(3, 6),
+                    settings.strength(3f).requiresTool()));
+
+    public static final Block PINK_GARNET_END_ORE = createBlock("pink_garnet_end_ore", settings ->
+            new ExperienceDroppingBlock(UniformIntProvider.create(4, 8),
+                    settings.strength(4f).requiresTool()));
 
     public static final Block MAGIC_BLOCK = createBlock("magic_block", settings ->
             new MagicBlock(settings.strength(4f).requiresTool().sounds(ModSounds.MAGIC_BLOCK_SOUNDS)));
