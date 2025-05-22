@@ -59,6 +59,16 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PINK_GARNET_BUTTON);
                         entries.add(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
                         entries.add(ModBlocks.PINK_GARNET_LAMP);
+
+                        // TODO: Move These to their own item group and add complete set of Driftwood items (slab, stairs, etc)
+
+                        entries.add(ModBlocks.DRIFTWOOD_LOG);
+                        entries.add(ModBlocks.DRIFTWOOD_WOOD);
+                        entries.add(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
+                        entries.add(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+                        entries.add(ModBlocks.DRIFTWOOD_PLANKS);
+                        entries.add(ModBlocks.DRIFTWOOD_LEAVES);
+                        entries.add(ModBlocks.DRIFTWOOD_SAPLING);
                     })
                     .build());
 
