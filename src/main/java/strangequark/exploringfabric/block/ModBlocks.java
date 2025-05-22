@@ -15,10 +15,11 @@ import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
 import strangequark.exploringfabric.block.custom.MagicBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.sound.ModSounds;
+import strangequark.exploringfabric.util.ModRegistryKeys;
+import strangequark.exploringfabric.world.tree.ModSaplingGenerators;
 
 import static strangequark.exploringfabric.item.ModItems.createItem;
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
-import static strangequark.exploringfabric.util.ModRegistryKeys.Blocks;
 
 public class ModBlocks {
     public static final Block PINK_GARNET_BLOCK = createBlock("pink_garnet_block", settings ->
@@ -96,13 +97,28 @@ public class ModBlocks {
                     .pistonBehavior(PistonBehavior.DESTROY))
     );
 
+    public static final Block DRIFTWOOD_LOG = createBlock("driftwood_log", Blocks.OAK_LOG, PillarBlock::new);
+    public static final Block DRIFTWOOD_WOOD = createBlock("driftwood_wood", Blocks.OAK_WOOD, PillarBlock::new);
+    public static final Block STRIPPED_DRIFTWOOD_LOG = createBlock("stripped_driftwood_log", Blocks.OAK_WOOD, PillarBlock::new);
+    public static final Block STRIPPED_DRIFTWOOD_WOOD = createBlock("stripped_driftwood_wood", Blocks.OAK_WOOD, PillarBlock::new);
+
+    public static final Block DRIFTWOOD_PLANKS = createBlock("driftwood_planks", Blocks.OAK_PLANKS, Block::new);
+
+    public static final Block DRIFTWOOD_LEAVES = createBlock("driftwood_leaves", Blocks.OAK_LEAVES, settings -> new TintedParticleLeavesBlock(0.01f, settings));
+    public static final Block DRIFTWOOD_SAPLING = createBlock("driftwood_sapling", Blocks.OAK_SAPLING, settings -> new SaplingBlock(ModSaplingGenerators.DRIFTWOOD, settings));
+    
     private static <T extends Block> T createBlock(String name, BlockFactory<T> blockCreator) {
-        AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
+        AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(ModRegistryKeys.Blocks.createRegistryKey(name));
+        return registerBlock(name, blockCreator.create(settings), true);
+    }
+
+    private static <T extends Block> T createBlock(String name, Block block, BlockFactory<T> blockCreator) {
+        AbstractBlock.Settings settings = AbstractBlock.Settings.copy(block).registryKey(ModRegistryKeys.Blocks.createRegistryKey(name));
         return registerBlock(name, blockCreator.create(settings), true);
     }
 
     private static <T extends Block> T createBlock(String name, BlockFactory<T> blockCreator, boolean registerItem) {
-        AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(Blocks.createRegistryKey(name));
+        AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(ModRegistryKeys.Blocks.createRegistryKey(name));
         return registerBlock(name, blockCreator.create(settings), registerItem);
     }
 

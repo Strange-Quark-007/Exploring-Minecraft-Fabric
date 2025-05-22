@@ -12,6 +12,7 @@ import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 public class ModConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> featureRegisterable) {
         ModOreConfiguredFeatures.bootstrap(featureRegisterable);
+        ModTreeConfiguredFeatures.bootstrap(featureRegisterable);
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> of(String name) {

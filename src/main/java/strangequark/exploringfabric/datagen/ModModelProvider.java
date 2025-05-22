@@ -61,6 +61,19 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerCrop(ModBlocks.CAULIFLOWERS, CauliflowersBlock.AGE, 0, 1, 2, 3, 4, 5, 6);
 
         blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.HONEY_BERRY_BUSH, BlockStateModelGenerator.CrossType.NOT_TINTED, HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
+
+
+        blockStateModelGenerator.createLogTexturePool(ModBlocks.DRIFTWOOD_LOG)
+                .log(ModBlocks.DRIFTWOOD_LOG)
+                .wood(ModBlocks.DRIFTWOOD_WOOD);
+
+        blockStateModelGenerator.createLogTexturePool(ModBlocks.STRIPPED_DRIFTWOOD_LOG)
+                .log(ModBlocks.STRIPPED_DRIFTWOOD_LOG)
+                .wood(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DRIFTWOOD_PLANKS);
+        blockStateModelGenerator.registerSingleton(ModBlocks.DRIFTWOOD_LEAVES, TexturedModel.LEAVES);
+        blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.DRIFTWOOD_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
     }
 
     @Override
@@ -87,6 +100,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.PINK_GARNET_HORSE_ARMOR, Models.GENERATED);
         itemModelGenerator.register(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE, Models.GENERATED);
+
+        itemModelGenerator.register(ModBlocks.DRIFTWOOD_SAPLING.asItem(), Models.GENERATED);
 
         Item chisel = ModItems.CHISEL;
         ItemModel.Unbaked unusedChisel = ItemModels.basic(itemModelGenerator.upload(chisel, Models.GENERATED));

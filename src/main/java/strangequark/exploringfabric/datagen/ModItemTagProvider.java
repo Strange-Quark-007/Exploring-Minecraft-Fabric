@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.item.ModItems;
 import strangequark.exploringfabric.util.ModTags;
 
@@ -83,5 +84,14 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PINK_GARNET_SWORD)
                 .add(ModItems.PINK_GARNET_AXE)
                 .add(ModItems.QUARK_BOW);
+
+        getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.DRIFTWOOD_LOG.asItem())
+                .add(ModBlocks.DRIFTWOOD_WOOD.asItem())
+                .add(ModBlocks.STRIPPED_DRIFTWOOD_LOG.asItem())
+                .add(ModBlocks.STRIPPED_DRIFTWOOD_WOOD.asItem());
+
+        getOrCreateTagBuilder(ItemTags.PLANKS)
+                .add(ModBlocks.DRIFTWOOD_PLANKS.asItem());
     }
 }

@@ -3,9 +3,7 @@ package strangequark.exploringfabric;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potions;
 import org.slf4j.Logger;
@@ -43,6 +41,7 @@ public class ExploringFabric implements ModInitializer {
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.HONEY_BERRIES, 0.1f);
+        CompostingChanceRegistry.INSTANCE.add(ModBlocks.DRIFTWOOD_SAPLING.asItem(), 0.1f);
 
         FuelRegistryEvents.BUILD.register((builder, context) -> builder.add(ModItems.STARLIGHT_ASHES, 4 * 10 * 20));
 
@@ -52,5 +51,15 @@ public class ExploringFabric implements ModInitializer {
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder ->
                 builder.registerPotionRecipe(Potions.AWKWARD, Items.SLIME_BALL, ModPotions.SLIMEY_POTION)
         );
+
+        StrippableBlockRegistry.register(ModBlocks.DRIFTWOOD_LOG, ModBlocks.STRIPPED_DRIFTWOOD_LOG);
+        StrippableBlockRegistry.register(ModBlocks.DRIFTWOOD_WOOD, ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.DRIFTWOOD_LOG, 5, 5);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.DRIFTWOOD_WOOD, 5, 5);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_DRIFTWOOD_LOG, 5, 5);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_DRIFTWOOD_WOOD, 5, 5);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.DRIFTWOOD_PLANKS, 5, 20);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.DRIFTWOOD_LEAVES, 30, 60);
     }
 }

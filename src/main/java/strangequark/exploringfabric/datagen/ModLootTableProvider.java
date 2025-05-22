@@ -53,6 +53,15 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
         addDrop(ModBlocks.PINK_GARNET_LAMP);
 
+        addDrop(ModBlocks.DRIFTWOOD_LOG);
+        addDrop(ModBlocks.DRIFTWOOD_WOOD);
+        addDrop(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
+        addDrop(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+        addDrop(ModBlocks.DRIFTWOOD_PLANKS);
+        addDrop(ModBlocks.DRIFTWOOD_SAPLING);
+
+        addDrop(ModBlocks.DRIFTWOOD_LEAVES, leavesDrops(ModBlocks.DRIFTWOOD_LEAVES, ModBlocks.DRIFTWOOD_SAPLING, 0.0625f));
+        
         BlockStatePropertyLootCondition.Builder cauliflowerCondition =
                 BlockStatePropertyLootCondition.builder(ModBlocks.CAULIFLOWERS)
                         .properties(StatePredicate.Builder.create().exactMatch(CauliflowersBlock.AGE, CauliflowersBlock.MAX_AGE));
