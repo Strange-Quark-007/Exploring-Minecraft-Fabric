@@ -16,7 +16,7 @@ import strangequark.exploringfabric.block.custom.MagicBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.sound.ModSounds;
 import strangequark.exploringfabric.util.ModRegistryKeys;
-import strangequark.exploringfabric.world.tree.ModSaplingGenerators;
+import strangequark.exploringfabric.world.sapling.ModSaplingGenerators;
 
 import static strangequark.exploringfabric.item.ModItems.createItem;
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
@@ -106,7 +106,7 @@ public class ModBlocks {
 
     public static final Block DRIFTWOOD_LEAVES = createBlock("driftwood_leaves", Blocks.OAK_LEAVES, settings -> new TintedParticleLeavesBlock(0.01f, settings));
     public static final Block DRIFTWOOD_SAPLING = createBlock("driftwood_sapling", Blocks.OAK_SAPLING, settings -> new SaplingBlock(ModSaplingGenerators.DRIFTWOOD, settings));
-    
+
     private static <T extends Block> T createBlock(String name, BlockFactory<T> blockCreator) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(ModRegistryKeys.Blocks.createRegistryKey(name));
         return registerBlock(name, blockCreator.create(settings), true);

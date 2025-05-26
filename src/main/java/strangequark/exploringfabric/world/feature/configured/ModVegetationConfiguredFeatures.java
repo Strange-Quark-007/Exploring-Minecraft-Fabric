@@ -1,4 +1,4 @@
-package strangequark.exploringfabric.world;
+package strangequark.exploringfabric.world.feature.configured;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.SimpleBlockFeatureConfig;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
+import strangequark.exploringfabric.world.feature.ModConfiguredFeatures;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class ModVegetationConfiguredFeatures {
                         Feature.SIMPLE_BLOCK,
                         new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.HONEY_BERRY_BUSH.getDefaultState().with(HoneyBerryBushBlock.AGE, 3))),
                         List.of(Blocks.GRASS_BLOCK)
-                ));
+                )
+        );
     }
 }

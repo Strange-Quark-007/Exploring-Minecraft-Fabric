@@ -1,8 +1,8 @@
-package strangequark.exploringfabric.world.tree;
+package strangequark.exploringfabric.world.sapling;
 
 import net.minecraft.block.SaplingGenerator;
 import strangequark.exploringfabric.ExploringFabric;
-import strangequark.exploringfabric.world.ModTreeConfiguredFeatures;
+import strangequark.exploringfabric.world.feature.configured.ModTreeConfiguredFeatures;
 
 import java.util.Optional;
 

@@ -8,8 +8,8 @@ import strangequark.exploringfabric.datagen.*;
 import strangequark.exploringfabric.enchantment.ModEnchantments;
 import strangequark.exploringfabric.trim.ModTrimMaterials;
 import strangequark.exploringfabric.trim.ModTrimPatterns;
-import strangequark.exploringfabric.world.ModConfiguredFeatures;
-import strangequark.exploringfabric.world.ModPlacedFeatures;
+import strangequark.exploringfabric.world.feature.ModConfiguredFeatures;
+import strangequark.exploringfabric.world.feature.ModPlacedFeatures;
 
 public class ExploringFabricDataGenerator implements DataGeneratorEntrypoint {
     @Override

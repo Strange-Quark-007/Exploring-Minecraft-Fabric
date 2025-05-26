@@ -1,4 +1,4 @@
-package strangequark.exploringfabric.world;
+package strangequark.exploringfabric.world.feature.configured;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.world.feature.ModConfiguredFeatures;
 
 import java.util.List;
 
