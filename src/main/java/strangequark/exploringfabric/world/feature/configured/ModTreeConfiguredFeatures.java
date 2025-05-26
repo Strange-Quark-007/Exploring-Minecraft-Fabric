@@ -1,4 +1,4 @@
-package strangequark.exploringfabric.world;
+package strangequark.exploringfabric.world.feature.configured;
 
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registerable;
@@ -12,6 +12,7 @@ import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.world.feature.ModConfiguredFeatures;
 
 public class ModTreeConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> TREES_DRIFTWOOD = ModConfiguredFeatures.of("trees_driftwood");

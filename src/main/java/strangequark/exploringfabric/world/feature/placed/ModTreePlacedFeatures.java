@@ -1,4 +1,4 @@
-package strangequark.exploringfabric.world;
+package strangequark.exploringfabric.world.feature.placed;
 
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -7,6 +7,8 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.world.feature.ModPlacedFeatures;
+import strangequark.exploringfabric.world.feature.configured.ModTreeConfiguredFeatures;
 
 public class ModTreePlacedFeatures {
     public static final RegistryKey<PlacedFeature> TREES_DRIFTWOOD = ModPlacedFeatures.of("trees_driftwood");
@@ -17,7 +19,8 @@ public class ModTreePlacedFeatures {
         ModPlacedFeatures.register(featureRegisterable, TREES_DRIFTWOOD,
                 configuredFeatures.getOrThrow(ModTreeConfiguredFeatures.TREES_DRIFTWOOD),
                 VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-                        PlacedFeatures.createCountExtraModifier(1, 0.1f, 1), ModBlocks.DRIFTWOOD_SAPLING)
+                        PlacedFeatures.createCountExtraModifier(1, 0.1f, 1), ModBlocks.DRIFTWOOD_SAPLING
+                )
         );
     }
 }

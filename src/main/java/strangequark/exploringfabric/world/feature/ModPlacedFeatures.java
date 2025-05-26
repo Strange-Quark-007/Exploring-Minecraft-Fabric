@@ -1,4 +1,4 @@
-package strangequark.exploringfabric.world;
+package strangequark.exploringfabric.world.feature;
 
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -7,6 +7,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+import strangequark.exploringfabric.world.feature.placed.ModOrePlacedFeatures;
+import strangequark.exploringfabric.world.feature.placed.ModTreePlacedFeatures;
+import strangequark.exploringfabric.world.feature.placed.ModVegetationPlacedFeatures;
 
 import java.util.List;
 

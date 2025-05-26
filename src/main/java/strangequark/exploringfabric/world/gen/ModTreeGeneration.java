@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
-import strangequark.exploringfabric.world.ModTreePlacedFeatures;
+import strangequark.exploringfabric.world.feature.placed.ModTreePlacedFeatures;
 
 public class ModTreeGeneration {
     public static void generateTrees() {
