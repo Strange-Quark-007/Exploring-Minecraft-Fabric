@@ -13,6 +13,7 @@ import strangequark.exploringfabric.food.ModFoodComponents;
 import strangequark.exploringfabric.item.custom.ChiselItem;
 import strangequark.exploringfabric.item.custom.HammerItem;
 import strangequark.exploringfabric.trim.ModTrimMaterials;
+import strangequark.exploringfabric.util.ModTags;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 import static strangequark.exploringfabric.util.ModRegistryKeys.Items.createRegistryKey;
@@ -31,7 +32,7 @@ public class ModItems {
     public static final Item PINK_GARNET_SHOVEL = createItem("pink_garnet_shovel", settings -> new ShovelItem(ModToolMaterials.PINK_GARNET, 1.5F, -3.0F, settings));
     public static final Item PINK_GARNET_HOE = createItem("pink_garnet_hoe", settings -> new HoeItem(ModToolMaterials.PINK_GARNET, -3.0F, 0.0F, settings));
 
-    public static final Item PINK_GARNET_HAMMER = createItem("pink_garnet_hammer", settings -> new HammerItem(settings.pickaxe(ModToolMaterials.PINK_GARNET, 7.0F, -3.3F)));
+    public static final Item PINK_GARNET_HAMMER = createItem("pink_garnet_hammer", settings -> new HammerItem(settings.tool(ModToolMaterials.PINK_GARNET, ModTags.Blocks.HAMMER_MINEABLE, 7.0F, -3.3F, 0.0f)));
 
     public static final Item PINK_GARNET_HELMET = createItem("pink_garnet_helmet", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.HELMET)));
     public static final Item PINK_GARNET_CHESTPLATE = createItem("pink_garnet_chestplate", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.CHESTPLATE)));

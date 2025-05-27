@@ -42,5 +42,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DRIFTWOOD_WOOD)
                 .add(ModBlocks.STRIPPED_DRIFTWOOD_LOG)
                 .add(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+
+        getOrCreateTagBuilder(ModTags.Blocks.HAMMER_MINEABLE)
+                .addOptionalTag(BlockTags.AXE_MINEABLE)
+                .addOptionalTag(BlockTags.PICKAXE_MINEABLE)
+                .addOptionalTag(BlockTags.SHOVEL_MINEABLE);
     }
 }
