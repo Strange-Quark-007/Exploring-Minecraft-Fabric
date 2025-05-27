@@ -21,19 +21,7 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.PINK_GARNET);
                         entries.add(ModItems.RAW_PINK_GARNET);
-                        entries.add(ModItems.PINK_GARNET_SWORD);
-                        entries.add(ModItems.PINK_GARNET_PICKAXE);
-                        entries.add(ModItems.PINK_GARNET_AXE);
-                        entries.add(ModItems.PINK_GARNET_SHOVEL);
-                        entries.add(ModItems.PINK_GARNET_HOE);
-                        entries.add(ModItems.PINK_GARNET_HAMMER);
-                        entries.add(ModItems.PINK_GARNET_HELMET);
-                        entries.add(ModItems.PINK_GARNET_CHESTPLATE);
-                        entries.add(ModItems.PINK_GARNET_LEGGINGS);
-                        entries.add(ModItems.PINK_GARNET_BOOTS);
-                        entries.add(ModItems.PINK_GARNET_HORSE_ARMOR);
                         entries.add(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE);
-                        entries.add(ModItems.QUARK_BOW);
                     })
                     .build());
 
@@ -59,9 +47,36 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PINK_GARNET_BUTTON);
                         entries.add(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
                         entries.add(ModBlocks.PINK_GARNET_LAMP);
+                    })
+                    .build());
 
-                        // TODO: Move These to their own item group and add complete set of Driftwood items (slab, stairs, etc)
+    public static final ItemGroup PINK_GARNET_EQUIPMENT_GROUP = Registry.register(Registries.ITEM_GROUP,
+            createIdentifier("pink_garnet_equipment"),
+            FabricItemGroup.builder()
+                    .icon(() -> new ItemStack(ModItems.PINK_GARNET_SWORD))
+                    .displayName(Text.translatable("itemgroup.exploringfabric.pink_garnet_equipment"))
+                    .entries((displayContext, entries) -> {
+                        entries.add(ModItems.PINK_GARNET_HAMMER);
+                        entries.add(ModItems.PINK_GARNET_SWORD);
+                        entries.add(ModItems.PINK_GARNET_PICKAXE);
+                        entries.add(ModItems.PINK_GARNET_AXE);
+                        entries.add(ModItems.PINK_GARNET_SHOVEL);
+                        entries.add(ModItems.PINK_GARNET_HOE);
+                        entries.add(ModItems.QUARK_BOW);
+                        entries.add(ModItems.PINK_GARNET_HELMET);
+                        entries.add(ModItems.PINK_GARNET_CHESTPLATE);
+                        entries.add(ModItems.PINK_GARNET_LEGGINGS);
+                        entries.add(ModItems.PINK_GARNET_BOOTS);
+                        entries.add(ModItems.PINK_GARNET_HORSE_ARMOR);
+                    })
+                    .build());
 
+    public static final ItemGroup DRIFTWOOD_GROUP = Registry.register(Registries.ITEM_GROUP,
+            createIdentifier("drftwood_items"),
+            FabricItemGroup.builder()
+                    .icon(() -> new ItemStack(ModBlocks.DRIFTWOOD_LOG))
+                    .displayName(Text.translatable("itemgroup.exploringfabric.driftwood_items"))
+                    .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.DRIFTWOOD_LOG);
                         entries.add(ModBlocks.DRIFTWOOD_WOOD);
                         entries.add(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
@@ -82,7 +97,6 @@ public class ModItemGroups {
                         entries.add(ModItems.CAULIFLOWER);
                         entries.add(ModItems.STARLIGHT_ASHES);
                         entries.add(ModBlocks.MAGIC_BLOCK);
-                        entries.add(ModBlocks.PINK_GARNET_LAMP);
                         entries.add(ModItems.HONEY_BERRIES);
                     })
                     .build());
