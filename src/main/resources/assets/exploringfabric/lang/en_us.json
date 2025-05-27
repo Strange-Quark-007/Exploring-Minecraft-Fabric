@@ -63,6 +63,7 @@
   "sounds.exploringfabric.magic_block_hit": "Magic block hit",
   "sounds.exploringfabric.magic_block_place": "Magic block placed",
   "sounds.exploringfabric.magic_block_step": "Steps on Magic block",
+  "tag.item.exploringfabric.hammer_mineable": "Hammer Mineable Blocks",
   "tag.item.exploringfabric.incorrect_for_pink_garnet_tool": "Incorrect for Pink Garnet Tools",
   "tag.item.exploringfabric.lighting_striker_enchantable": "Items enchantable with Lightning Striker",
   "tag.item.exploringfabric.needs_pink_garnet_tool": "Needs Pink Garnet Tools",
