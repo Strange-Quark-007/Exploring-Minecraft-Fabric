@@ -46,6 +46,11 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(ModTags.Blocks.HAMMER_MINEABLE)
                 .addOptionalTag(BlockTags.AXE_MINEABLE)
                 .addOptionalTag(BlockTags.PICKAXE_MINEABLE)
-                .addOptionalTag(BlockTags.SHOVEL_MINEABLE);
+                .addOptionalTag(BlockTags.SHOVEL_MINEABLE)
+                .addOptionalTag(BlockTags.HOE_MINEABLE)
+                .addOptionalTag(BlockTags.LEAVES);
+
+        getOrCreateTagBuilder(BlockTags.LEAVES)
+                .add(ModBlocks.DRIFTWOOD_LEAVES);
     }
 }
