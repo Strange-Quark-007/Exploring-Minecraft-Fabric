@@ -14,12 +14,17 @@ public record LightningStrikerEnchantmentEffect() implements EnchantmentEntityEf
 
     @Override
     public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
+        var userPos = user.getBlockPos();
+
+        if (!world.isSkyVisibleAllowingSea(userPos)) {
+            return;
+        }
         if (level == 1) {
-            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, userPos, SpawnReason.TRIGGERED);
         }
         if (level == 2) {
-            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
-            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, userPos, SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, userPos, SpawnReason.TRIGGERED);
         }
     }
 
