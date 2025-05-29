@@ -8,23 +8,26 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 
 public record LightningStrikerEnchantmentEffect() implements EnchantmentEntityEffect {
     public static final MapCodec<LightningStrikerEnchantmentEffect> CODEC = MapCodec.unit(LightningStrikerEnchantmentEffect::new);
 
     @Override
     public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
+        Random random = Random.create();
         var userPos = user.getBlockPos();
+        int strikes = (int) Math.round(Math.pow(level, 2));
 
         if (!world.isSkyVisibleAllowingSea(userPos)) {
             return;
         }
-        if (level == 1) {
-            EntityType.LIGHTNING_BOLT.spawn(world, userPos, SpawnReason.TRIGGERED);
-        }
-        if (level == 2) {
-            EntityType.LIGHTNING_BOLT.spawn(world, userPos, SpawnReason.TRIGGERED);
-            EntityType.LIGHTNING_BOLT.spawn(world, userPos, SpawnReason.TRIGGERED);
+
+        for (int i = 0; i < strikes; i++) {
+            var blockPos = user.getBlockPos();
+            int offset = random.nextBetween(-1, 1);
+            var strikePos = blockPos.add(offset, 0, offset);
+            EntityType.LIGHTNING_BOLT.spawn(world, strikePos, SpawnReason.TRIGGERED);
         }
     }
 
