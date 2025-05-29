@@ -77,6 +77,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.QUARK_BOW);
 
         getOrCreateTagBuilder(ModTags.Items.LIGHTNING_STRIKER_ENCHANTABLE)
+                .add(Items.BOW)
                 .add(Items.DIAMOND_SWORD)
                 .add(Items.NETHERITE_SWORD)
                 .add(Items.DIAMOND_AXE)
