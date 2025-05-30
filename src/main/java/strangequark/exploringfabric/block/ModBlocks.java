@@ -103,6 +103,22 @@ public class ModBlocks {
     public static final Block STRIPPED_DRIFTWOOD_WOOD = createBlock("stripped_driftwood_wood", Blocks.OAK_WOOD, PillarBlock::new);
 
     public static final Block DRIFTWOOD_PLANKS = createBlock("driftwood_planks", Blocks.OAK_PLANKS, Block::new);
+    public static final Block DRIFTWOOD_SLAB = createBlock("driftwood_slab", Blocks.OAK_SLAB, SlabBlock::new);
+
+    public static final Block DRIFTWOOD_STAIRS = createBlock("driftwood_stairs", settings ->
+            new StairsBlock(ModBlocks.DRIFTWOOD_PLANKS.getDefaultState(), settings.strength(2f).requiresTool()));
+
+    public static final Block DRIFTWOOD_FENCE = createBlock("driftwood_fence", settings ->
+            new FenceBlock(settings.strength(2f).requiresTool()));
+
+    public static final Block DRIFTWOOD_FENCE_GATE = createBlock("driftwood_fence_gate", settings ->
+            new FenceGateBlock(WoodType.OAK, settings.strength(2f).requiresTool()));
+
+    public static final Block DRIFTWOOD_BUTTON = createBlock("driftwood_button", settings ->
+            new ButtonBlock(BlockSetType.OAK, 10, settings.strength(2f).requiresTool().noCollision()));
+
+    public static final Block DRIFTWOOD_PRESSURE_PLATE = createBlock("driftwood_pressure_plate", settings ->
+            new PressurePlateBlock(BlockSetType.OAK, settings.strength(2f).requiresTool()));
 
     public static final Block DRIFTWOOD_LEAVES = createBlock("driftwood_leaves", Blocks.OAK_LEAVES, settings -> new TintedParticleLeavesBlock(0.01f, settings));
     public static final Block DRIFTWOOD_SAPLING = createBlock("driftwood_sapling", Blocks.OAK_SAPLING, settings -> new SaplingBlock(ModSaplingGenerators.DRIFTWOOD, settings));

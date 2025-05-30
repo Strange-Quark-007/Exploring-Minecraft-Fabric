@@ -126,6 +126,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 .input('T', Items.STICK),
                         ModItems.PINK_GARNET);
 
+                offerWithCriterion(createStairsRecipe(ModBlocks.DRIFTWOOD_STAIRS, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
+                offerWithCriterion(createFenceRecipe(ModBlocks.DRIFTWOOD_FENCE, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
+                offerWithCriterion(createFenceGateRecipe(ModBlocks.DRIFTWOOD_FENCE_GATE, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
+                offerWithCriterion(createButtonRecipe(ModBlocks.DRIFTWOOD_BUTTON, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
+                offerWithCriterion(createPressurePlateRecipe(RecipeCategory.REDSTONE, ModBlocks.DRIFTWOOD_PRESSURE_PLATE, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
             }
 
             private void offerWithCriterion(CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
