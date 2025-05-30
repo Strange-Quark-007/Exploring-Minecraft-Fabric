@@ -71,7 +71,16 @@ public class ModModelProvider extends FabricModelProvider {
                 .log(ModBlocks.STRIPPED_DRIFTWOOD_LOG)
                 .wood(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DRIFTWOOD_PLANKS);
+        BlockStateModelGenerator.BlockTexturePool driftwoodPool =
+                blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.DRIFTWOOD_PLANKS);
+
+        driftwoodPool.slab(ModBlocks.DRIFTWOOD_SLAB);
+        driftwoodPool.stairs(ModBlocks.DRIFTWOOD_STAIRS);
+        driftwoodPool.fence(ModBlocks.DRIFTWOOD_FENCE);
+        driftwoodPool.fenceGate(ModBlocks.DRIFTWOOD_FENCE_GATE);
+        driftwoodPool.button(ModBlocks.DRIFTWOOD_BUTTON);
+        driftwoodPool.pressurePlate(ModBlocks.DRIFTWOOD_PRESSURE_PLATE);
+
         blockStateModelGenerator.registerSingleton(ModBlocks.DRIFTWOOD_LEAVES, TexturedModel.LEAVES);
         blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.DRIFTWOOD_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
     }
