@@ -28,14 +28,14 @@ public class HammerItem extends Item {
         if (hit.getType() == HitResult.Type.BLOCK) {
             BlockHitResult blockHit = (BlockHitResult) hit;
             Block block = world.getBlockState(initalBlockPos).getBlock();
+            float hardness = block.getHardness();
 
             /*
              * Prevent instant-mineable blocks (zero hardness) from breaking adjacent solid blocks.
-             * Still allows unintended mining of higher-hardness blocks (e.g. obsidian) when mining adjacent lower-hardness blocks (e.g. stone)
-             * Could be improved with a stricter hardness check in each loop, but let's call it a feature for now.
+             * Disallow mining of higher-hardness blocks (e.g. obsidian) when mining adjacent lower-hardness blocks (e.g. stone).
              */
 
-            if (block.getHardness() <= 0 && block != Blocks.AIR) {
+            if (hardness <= 0 && block != Blocks.AIR) {
                 positions.add(initalBlockPos);
                 return positions;
             }
@@ -43,7 +43,10 @@ public class HammerItem extends Item {
             if (blockHit.getSide() == Direction.DOWN || blockHit.getSide() == Direction.UP) {
                 for (int x = -RANGE; x <= RANGE; x++) {
                     for (int y = -RANGE; y <= RANGE; y++) {
-                        positions.add(new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY(), initalBlockPos.getZ() + y));
+                        var blockPos = new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY(), initalBlockPos.getZ() + y);
+                        if (world.getBlockState(blockPos).getBlock().getHardness() <= hardness) {
+                            positions.add(blockPos);
+                        }
                     }
                 }
             }
@@ -51,7 +54,10 @@ public class HammerItem extends Item {
             if (blockHit.getSide() == Direction.NORTH || blockHit.getSide() == Direction.SOUTH) {
                 for (int x = -RANGE; x <= RANGE; x++) {
                     for (int y = -RANGE; y <= RANGE; y++) {
-                        positions.add(new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY() + y, initalBlockPos.getZ()));
+                        var blockPos = new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY() + y, initalBlockPos.getZ());
+                        if (world.getBlockState(blockPos).getBlock().getHardness() <= hardness) {
+                            positions.add(blockPos);
+                        }
                     }
                 }
             }
@@ -59,7 +65,10 @@ public class HammerItem extends Item {
             if (blockHit.getSide() == Direction.EAST || blockHit.getSide() == Direction.WEST) {
                 for (int x = -RANGE; x <= RANGE; x++) {
                     for (int y = -RANGE; y <= RANGE; y++) {
-                        positions.add(new BlockPos(initalBlockPos.getX(), initalBlockPos.getY() + y, initalBlockPos.getZ() + x));
+                        var blockPos = new BlockPos(initalBlockPos.getX(), initalBlockPos.getY() + y, initalBlockPos.getZ() + x);
+                        if (world.getBlockState(blockPos).getBlock().getHardness() <= hardness) {
+                            positions.add(blockPos);
+                        }
                     }
                 }
             }
