@@ -25,6 +25,10 @@ public class HammerItem extends Item {
         List<BlockPos> positions = new ArrayList<>();
         HitResult hit = player.raycast(20, 0, false);
 
+        if (world.isClient()) {
+            return new ArrayList<>();
+        }
+
         if (hit.getType() == HitResult.Type.BLOCK) {
             BlockHitResult blockHit = (BlockHitResult) hit;
             Block block = world.getBlockState(initalBlockPos).getBlock();

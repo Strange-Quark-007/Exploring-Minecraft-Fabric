@@ -12,6 +12,7 @@ import strangequark.exploringfabric.food.ModConsumableComponents;
 import strangequark.exploringfabric.food.ModFoodComponents;
 import strangequark.exploringfabric.item.custom.ChiselItem;
 import strangequark.exploringfabric.item.custom.HammerItem;
+import strangequark.exploringfabric.item.custom.MagnetItem;
 import strangequark.exploringfabric.trim.ModTrimMaterials;
 import strangequark.exploringfabric.util.ModTags;
 
@@ -33,6 +34,7 @@ public class ModItems {
     public static final Item PINK_GARNET_HOE = createItem("pink_garnet_hoe", settings -> new HoeItem(ModToolMaterials.PINK_GARNET, -3.0F, 0.0F, settings));
 
     public static final Item PINK_GARNET_HAMMER = createItem("pink_garnet_hammer", settings -> new HammerItem(settings.tool(ModToolMaterials.PINK_GARNET, ModTags.Blocks.HAMMER_MINEABLE, 7.0F, -3.3F, 0.0f)));
+    public static final Item PINK_GARNET_MAGNET = createItem("pink_garnet_magnet", settings -> new MagnetItem(settings.maxDamage(256)));
 
     public static final Item PINK_GARNET_HELMET = createItem("pink_garnet_helmet", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.HELMET)));
     public static final Item PINK_GARNET_CHESTPLATE = createItem("pink_garnet_chestplate", settings -> new Item(settings.armor(ModArmorMaterials.PINK_GARNET, EquipmentType.CHESTPLATE)));
@@ -46,6 +48,7 @@ public class ModItems {
     public static final Item QUARK_BOW = createItem("quark_bow", settings -> new BowItem(settings.maxDamage(250)));
 
     public static final Item HONEY_BERRIES = createItem("honey_berries", settings -> new BlockItem(ModBlocks.HONEY_BERRY_BUSH, settings.food(ModFoodComponents.HONEY_BERRIES)));
+
 
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
