@@ -62,6 +62,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
                 .addTag(ModTags.Items.PINK_GARNET_ARMOR)
+                .add(ModItems.PINK_GARNET_MAGNET)
                 .add(ModItems.QUARK_BOW);
 
         getOrCreateTagBuilder(ModTags.Items.NETHERITE_ARMOR)

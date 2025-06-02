@@ -26,7 +26,7 @@ public class ModTags {
         public static final TagKey<Item> PINK_GARNET_ARMOR = createTag("pink_garnet_armor");
         public static final TagKey<Item> NETHERITE_ARMOR = createTag("netherite_armor");
 
-        public static final TagKey<Item> LIGHTNING_STRIKER_ENCHANTABLE = createTag("lighting_striker_enchantable");
+        public static final TagKey<Item> LIGHTNING_STRIKER_ENCHANTABLE = createTag("lightning_striker_enchantable");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, createIdentifier(name));

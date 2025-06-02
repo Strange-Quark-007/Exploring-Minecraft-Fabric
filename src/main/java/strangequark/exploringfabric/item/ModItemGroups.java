@@ -21,6 +21,7 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.PINK_GARNET);
                         entries.add(ModItems.RAW_PINK_GARNET);
+                        entries.add(ModItems.PINK_GARNET_MAGNET);
                         entries.add(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE);
                     })
                     .build());
