@@ -42,8 +42,6 @@ public class ExploringFabric implements ModInitializer {
         ModWorldGeneration.generateModWorldGen();
         ModEntities.registerModEntities();
 
-        ModWorldGeneration.generateModWorldGen();
-
         CompostingChanceRegistry.INSTANCE.add(ModItems.CAULIFLOWER, 0.2f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.HONEY_BERRIES, 0.1f);
         CompostingChanceRegistry.INSTANCE.add(ModBlocks.DRIFTWOOD_SAPLING.asItem(), 0.1f);

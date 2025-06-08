@@ -18,10 +18,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -128,7 +130,8 @@ public class MantisEntity extends AnimalEntity {
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData) {
-        MantisVariant variant = Util.getRandom(MantisVariant.values(), this.random);
+        boolean isColdBiome = world.getBiome(BlockPos.ofFloored(this.getPos())).isIn(BiomeTags.SPAWNS_COLD_VARIANT_FARM_ANIMALS);
+        MantisVariant variant = MantisVariant.byId(isColdBiome ? 1 : 0);
         setVariant(variant);
         return super.initialize(world, difficulty, spawnReason, entityData);
     }
