@@ -8,6 +8,7 @@ import net.minecraft.client.render.item.property.bool.HasComponentProperty;
 import net.minecraft.client.render.item.property.numeric.UseDurationProperty;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.item.Item;
+import net.minecraft.util.Identifier;
 import strangequark.exploringfabric.armor.ModEquipmentAssetKeys;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.CauliflowersBlock;
@@ -15,6 +16,8 @@ import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
 import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
 import strangequark.exploringfabric.component.ModDataComponentTypes;
 import strangequark.exploringfabric.item.ModItems;
+
+import java.util.Optional;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -136,5 +139,8 @@ public class ModModelProvider extends FabricModelProvider {
                 ItemModels.rangeDispatch(new UseDurationProperty(false), 0.05F, unbakedBow2, ItemModels.rangeDispatchEntry(unbakedBow3, 0.65F), ItemModels.rangeDispatchEntry(unbakedBow4, 0.9F)),
                 unbakedBow
         );
+
+        // Reuse brown chicken egg texture
+        itemModelGenerator.register(ModItems.MANTIS_SPAWN_EGG, new Model(Optional.of(Identifier.of("item/brown_egg")), Optional.empty()));
     }
 }

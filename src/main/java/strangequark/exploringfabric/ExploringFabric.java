@@ -3,6 +3,7 @@ package strangequark.exploringfabric;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potions;
@@ -14,6 +15,8 @@ import strangequark.exploringfabric.effect.ArmorEffectHandler;
 import strangequark.exploringfabric.effect.ModEffects;
 import strangequark.exploringfabric.enchantment.ModEnchantmentEffects;
 import strangequark.exploringfabric.enchantment.ModEnchantments;
+import strangequark.exploringfabric.entity.ModEntities;
+import strangequark.exploringfabric.entity.custom.MantisEntity;
 import strangequark.exploringfabric.item.ModItemGroups;
 import strangequark.exploringfabric.item.ModItems;
 import strangequark.exploringfabric.potion.ModPotions;
@@ -36,6 +39,8 @@ public class ExploringFabric implements ModInitializer {
         ModPotions.registerPotions();
         ModEnchantments.registerEnchantments();
         ModEnchantmentEffects.registerEnchantmentEffects();
+        ModWorldGeneration.generateModWorldGen();
+        ModEntities.registerModEntities();
 
         ModWorldGeneration.generateModWorldGen();
 
@@ -65,5 +70,7 @@ public class ExploringFabric implements ModInitializer {
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.DRIFTWOOD_FENCE, 5, 20);
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.DRIFTWOOD_FENCE_GATE, 5, 20);
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.DRIFTWOOD_LEAVES, 30, 60);
+
+        FabricDefaultAttributeRegistry.register(ModEntities.MANTIS, MantisEntity.createAttributes());
     }
 }

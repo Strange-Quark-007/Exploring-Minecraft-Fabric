@@ -1,6 +1,7 @@
 {
   "effect.exploringfabric.slimey": "Slimey",
   "enchantment.exploringfabric.lightning_striker": "Lightning Striker",
+  "entity.exploringfabric.mantis": "Mantis",
   "item.exploringfabric.cauliflower": "Cauliflower",
   "item.exploringfabric.cauliflowers": "Cauliflowers",
   "item.exploringfabric.chisel": "Chisel",
@@ -21,6 +22,7 @@
   "item.exploringfabric.magic_block": "Magic Block",
   "item.exploringfabric.magic_block.tooltip": "This block is very, very §5MAGICAL!§r",
   "item.exploringfabric.magic_block.tooltip_expanded": "This block converts §dPink Garnet§r to §dDiamonds.§r",
+  "item.exploringfabric.mantis_spawn_egg": "Mantis Spawn Egg",
   "item.exploringfabric.pink_garnet": "Pink Garnet",
   "item.exploringfabric.pink_garnet_axe": "Pink Garnet Axe",
   "item.exploringfabric.pink_garnet_block": "Block of Pink Garnet",
