@@ -21,6 +21,5 @@ public class ExploringFabricClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.MANTIS, MantisRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(MantisModel.MANTIS, MantisModel::getTexturedModelData);
-
     }
 }
