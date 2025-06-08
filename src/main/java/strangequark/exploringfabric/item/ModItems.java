@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.armor.ModArmorMaterials;
 import strangequark.exploringfabric.block.ModBlocks;
+import strangequark.exploringfabric.entity.ModEntities;
 import strangequark.exploringfabric.food.ModConsumableComponents;
 import strangequark.exploringfabric.food.ModFoodComponents;
 import strangequark.exploringfabric.item.custom.ChiselItem;
@@ -49,6 +50,7 @@ public class ModItems {
 
     public static final Item HONEY_BERRIES = createItem("honey_berries", settings -> new BlockItem(ModBlocks.HONEY_BERRY_BUSH, settings.food(ModFoodComponents.HONEY_BERRIES)));
 
+    public static final Item MANTIS_SPAWN_EGG = createItem("mantis_spawn_egg", settings -> new SpawnEggItem(ModEntities.MANTIS, settings));
 
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));

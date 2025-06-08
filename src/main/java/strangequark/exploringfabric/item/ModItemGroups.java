@@ -105,6 +105,7 @@ public class ModItemGroups {
                         entries.add(ModItems.STARLIGHT_ASHES);
                         entries.add(ModBlocks.MAGIC_BLOCK);
                         entries.add(ModItems.HONEY_BERRIES);
+                        entries.add(ModItems.MANTIS_SPAWN_EGG);
                     })
                     .build());
 
