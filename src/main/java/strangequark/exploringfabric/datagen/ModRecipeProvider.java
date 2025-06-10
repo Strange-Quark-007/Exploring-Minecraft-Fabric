@@ -136,9 +136,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 .pattern(" CI")
                                 .pattern("CSI")
                                 .pattern(" S ")
+                                .input('I', Items.IRON_INGOT)
                                 .input('C', Items.COBBLESTONE)
                                 .input('S', Items.STICK),
-                        Items.COBBLESTONE);
+                        Items.IRON_INGOT);
             }
 
             private void offerWithCriterion(CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
