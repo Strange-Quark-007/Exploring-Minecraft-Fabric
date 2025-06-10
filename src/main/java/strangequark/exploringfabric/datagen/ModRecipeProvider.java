@@ -133,8 +133,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 offerWithCriterion(createPressurePlateRecipe(RecipeCategory.REDSTONE, ModBlocks.DRIFTWOOD_PRESSURE_PLATE, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
 
                 offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.TOMAHAWK, 12)
-                                .pattern(" CC")
-                                .pattern("CSC")
+                                .pattern(" CI")
+                                .pattern("CSI")
                                 .pattern(" S ")
                                 .input('C', Items.COBBLESTONE)
                                 .input('S', Items.STICK),

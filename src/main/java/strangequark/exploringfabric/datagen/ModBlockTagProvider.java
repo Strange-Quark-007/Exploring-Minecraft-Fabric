@@ -57,5 +57,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(ModBlocks.DRIFTWOOD_FENCE);
         getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(ModBlocks.DRIFTWOOD_FENCE_GATE);
+
+        getOrCreateTagBuilder(ModTags.Blocks.TOMAHAWK_BREAKABLE)
+                .addOptionalTag(BlockTags.AXE_MINEABLE)
+                .addTag(BlockTags.LEAVES);
     }
 }
