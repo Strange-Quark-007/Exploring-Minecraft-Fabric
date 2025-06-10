@@ -131,6 +131,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 offerWithCriterion(createFenceGateRecipe(ModBlocks.DRIFTWOOD_FENCE_GATE, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
                 offerWithCriterion(createButtonRecipe(ModBlocks.DRIFTWOOD_BUTTON, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
                 offerWithCriterion(createPressurePlateRecipe(RecipeCategory.REDSTONE, ModBlocks.DRIFTWOOD_PRESSURE_PLATE, Ingredient.ofItem(ModBlocks.DRIFTWOOD_PLANKS)), ModBlocks.DRIFTWOOD_PLANKS);
+
+                offerWithCriterion(ShapedRecipeJsonBuilder.create(itemLookup, RecipeCategory.MISC, ModItems.TOMAHAWK, 12)
+                                .pattern(" CC")
+                                .pattern("CSC")
+                                .pattern(" S ")
+                                .input('C', Items.COBBLESTONE)
+                                .input('S', Items.STICK),
+                        Items.COBBLESTONE);
             }
 
             private void offerWithCriterion(CraftingRecipeJsonBuilder recipe, ItemConvertible unlockItem) {
