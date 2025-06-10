@@ -14,6 +14,7 @@ import strangequark.exploringfabric.food.ModFoodComponents;
 import strangequark.exploringfabric.item.custom.ChiselItem;
 import strangequark.exploringfabric.item.custom.HammerItem;
 import strangequark.exploringfabric.item.custom.MagnetItem;
+import strangequark.exploringfabric.item.custom.TomahawkItem;
 import strangequark.exploringfabric.trim.ModTrimMaterials;
 import strangequark.exploringfabric.util.ModTags;
 
@@ -51,6 +52,8 @@ public class ModItems {
     public static final Item HONEY_BERRIES = createItem("honey_berries", settings -> new BlockItem(ModBlocks.HONEY_BERRY_BUSH, settings.food(ModFoodComponents.HONEY_BERRIES)));
 
     public static final Item MANTIS_SPAWN_EGG = createItem("mantis_spawn_egg", settings -> new SpawnEggItem(ModEntities.MANTIS, settings));
+
+    public static final Item TOMAHAWK = createItem("tomahawk", TomahawkItem::new);
 
     public static <T extends Item> T createItem(String name, ItemFactory<T> itemCreator) {
         Item.Settings settings = new Item.Settings().registryKey(createRegistryKey(name));
