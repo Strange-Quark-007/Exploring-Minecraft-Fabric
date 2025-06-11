@@ -39,10 +39,6 @@ replay_*.log
 *.hprof
 *.jfr
 
-# github
-
-.github
-
 # data-generation
 
 src/main/generated/
