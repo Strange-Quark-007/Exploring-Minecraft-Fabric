@@ -53,6 +53,7 @@ public class TomahawkProjectileEntity extends PersistentProjectileEntity {
     /*
      * Makes the Tomahawk extremely powerful.
      * Instantly breaks any block in its path tagged as TOMAHAWK_BREAKABLE (axe mineable + leaves) on hit.
+     * Discard on hit to prevent repeated throws for balance.
      */
     @Override
     protected void onBlockHit(BlockHitResult result) {
@@ -63,6 +64,7 @@ public class TomahawkProjectileEntity extends PersistentProjectileEntity {
             world.breakBlock(pos, true, this.getOwner());
         } else {
             super.onBlockHit(result);
+            this.discard();
         }
     }
 }
