@@ -3,7 +3,8 @@
   "package": "strangequark.exploringfabric.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "SkeletonEntityMixin"
+    "SkeletonEntityMixin",
+    "WardenEntityMixin"
   ],
   "client": [
     "AbstractClientPlayerEntityMixin"
