@@ -1,10 +1,12 @@
 {
   "effect.exploringfabric.slimey": "Slimey",
   "enchantment.exploringfabric.lightning_striker": "Lightning Striker",
+  "entity.exploringfabric.chair": "Chair",
   "entity.exploringfabric.mantis": "Mantis",
   "entity.exploringfabric.tomahawk": "Tomahawk",
   "item.exploringfabric.cauliflower": "Cauliflower",
   "item.exploringfabric.cauliflowers": "Cauliflowers",
+  "item.exploringfabric.chair": "Chair",
   "item.exploringfabric.chisel": "Chisel",
   "item.exploringfabric.chisel.tooltip": "Press §eShift§r for more Information!",
   "item.exploringfabric.chisel.tooltip_expanded": "This item chisels §9Blocks§r into §9Bricks.§r",

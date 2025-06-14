@@ -100,10 +100,11 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.CHISEL))
                     .displayName(Text.translatable("itemgroup.exploringfabric.misc_mod_stuff"))
                     .entries((displayContext, entries) -> {
+                        entries.add(ModBlocks.MAGIC_BLOCK);
+                        entries.add(ModBlocks.CHAIR);
                         entries.add(ModItems.CHISEL);
                         entries.add(ModItems.CAULIFLOWER);
                         entries.add(ModItems.STARLIGHT_ASHES);
-                        entries.add(ModBlocks.MAGIC_BLOCK);
                         entries.add(ModItems.HONEY_BERRIES);
                         entries.add(ModItems.MANTIS_SPAWN_EGG);
                         entries.add(ModItems.TOMAHAWK);

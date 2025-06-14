@@ -10,10 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import strangequark.exploringfabric.ExploringFabric;
-import strangequark.exploringfabric.block.custom.CauliflowersBlock;
-import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
-import strangequark.exploringfabric.block.custom.MagicBlock;
-import strangequark.exploringfabric.block.custom.PinkGarnetLampBlock;
+import strangequark.exploringfabric.block.custom.*;
 import strangequark.exploringfabric.sound.ModSounds;
 import strangequark.exploringfabric.util.ModRegistryKeys;
 import strangequark.exploringfabric.world.sapling.ModSaplingGenerators;
@@ -122,6 +119,8 @@ public class ModBlocks {
 
     public static final Block DRIFTWOOD_LEAVES = createBlock("driftwood_leaves", Blocks.OAK_LEAVES, settings -> new TintedParticleLeavesBlock(0.01f, settings));
     public static final Block DRIFTWOOD_SAPLING = createBlock("driftwood_sapling", Blocks.OAK_SAPLING, settings -> new SaplingBlock(ModSaplingGenerators.DRIFTWOOD, settings));
+
+    public static final Block CHAIR = createBlock("chair", settings -> new ChairBlock(settings.nonOpaque()));
 
     private static <T extends Block> T createBlock(String name, BlockFactory<T> blockCreator) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(ModRegistryKeys.Blocks.createRegistryKey(name));
