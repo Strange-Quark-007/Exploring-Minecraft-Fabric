@@ -7,10 +7,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.entity.ModEntities;
-import strangequark.exploringfabric.entity.client.MantisModel;
-import strangequark.exploringfabric.entity.client.MantisRenderer;
-import strangequark.exploringfabric.entity.client.TomahawkProjectileModel;
-import strangequark.exploringfabric.entity.client.TomahawkProjectileRenderer;
+import strangequark.exploringfabric.entity.client.*;
 import strangequark.exploringfabric.tooltip.ModTooltips;
 
 public class ExploringFabricClient implements ClientModInitializer {
@@ -26,5 +23,7 @@ public class ExploringFabricClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.TOMAHAWK, TomahawkProjectileRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(TomahawkProjectileModel.TOMAHAWK, TomahawkProjectileModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
     }
 }
