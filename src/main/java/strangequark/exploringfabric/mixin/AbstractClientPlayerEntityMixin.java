@@ -24,7 +24,7 @@ public class AbstractClientPlayerEntityMixin extends PlayerEntity {
     private PlayerListEntry playerListEntry;
 
     public AbstractClientPlayerEntityMixin(ClientWorld world, GameProfile profile) {
-        super(world, world.getSpawnPos(), world.getSpawnAngle(), profile);
+        super(world, profile);
     }
 
     @Nullable

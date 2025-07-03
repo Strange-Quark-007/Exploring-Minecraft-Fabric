@@ -1,6 +1,7 @@
 package strangequark.exploringfabric.entity.client;
 
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.math.MathHelper;
@@ -9,6 +10,8 @@ import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class MantisModel extends EntityModel<MantisRenderState> {
     public static final EntityModelLayer MANTIS = new EntityModelLayer(createIdentifier("mantis"), "main");
+    private final Animation idlingAnimation;
+    private final Animation walkingAnimation;
     private final ModelPart root;
     private final ModelPart mantis;
     private final ModelPart head;
@@ -18,6 +21,9 @@ public class MantisModel extends EntityModel<MantisRenderState> {
         this.root = root.getChild("root");
         this.mantis = this.root.getChild("mantis");
         this.head = this.mantis.getChild("head");
+
+        this.idlingAnimation = MantisAnimations.IDLE.createAnimation(root);
+        this.walkingAnimation = MantisAnimations.WALK.createAnimation(root);
     }
 
     public static TexturedModelData getTexturedModelData() {
@@ -100,8 +106,8 @@ public class MantisModel extends EntityModel<MantisRenderState> {
         super.setAngles(state);
         this.setHeadAngles(state.relativeHeadYaw, state.pitch);
 
-        this.animateWalking(MantisAnimations.WALK, state.limbSwingAnimationProgress, state.limbSwingAmplitude, 2f, 2.5f);
-        this.animate(state.idleAnimationState, MantisAnimations.IDLE, state.age, 1f);
+        this.idlingAnimation.apply(state.idleAnimationState, state.age, 1f);
+        this.walkingAnimation.applyWalking(state.limbSwingAnimationProgress, state.limbSwingAmplitude, 2f, 2.5f);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

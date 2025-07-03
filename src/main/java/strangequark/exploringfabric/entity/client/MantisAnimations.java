@@ -1,12 +1,12 @@
 package strangequark.exploringfabric.entity.client;
 
-import net.minecraft.client.render.entity.animation.Animation;
+import net.minecraft.client.render.entity.animation.AnimationDefinition;
 import net.minecraft.client.render.entity.animation.AnimationHelper;
 import net.minecraft.client.render.entity.animation.Keyframe;
 import net.minecraft.client.render.entity.animation.Transformation;
 
 public class MantisAnimations {
-    public static final Animation IDLE = Animation.Builder.create(2f).looping()
+    public static final AnimationDefinition IDLE = AnimationDefinition.Builder.create(2f).looping()
             .addBoneAnimation("mantis",
                     new Transformation(Transformation.Targets.MOVE_ORIGIN,
                             new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f),
@@ -201,7 +201,7 @@ public class MantisAnimations {
                                     Transformation.Interpolations.LINEAR),
                             new Keyframe(2f, AnimationHelper.createRotationalVector(0f, 0f, 0f),
                                     Transformation.Interpolations.LINEAR))).build();
-    public static final Animation WALK = Animation.Builder.create(2f).looping()
+    public static final AnimationDefinition WALK = AnimationDefinition.Builder.create(2f).looping()
             .addBoneAnimation("mantis",
                     new Transformation(Transformation.Targets.MOVE_ORIGIN,
                             new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f),
