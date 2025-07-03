@@ -16,12 +16,13 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LocalDifficulty;
@@ -116,16 +117,17 @@ public class MantisEntity extends AnimalEntity {
         this.dataTracker.set(TYPE_VARIANT, variant.getId() & 255);
     }
 
+
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putInt("Variant", this.getTypeVariant());
+    public void writeData(WriteView view) {
+        super.writeCustomData(view);
+        view.putInt("Variant", this.getTypeVariant());
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        this.dataTracker.set(TYPE_VARIANT, nbt.getInt("Variant", 0));
+    public void readData(ReadView view) {
+        super.readData(view);
+        this.dataTracker.set(TYPE_VARIANT, view.getInt("Variant", 0));
     }
 
     @Override
