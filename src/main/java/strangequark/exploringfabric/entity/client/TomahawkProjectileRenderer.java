@@ -1,18 +1,17 @@
 package strangequark.exploringfabric.entity.client;
 
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.state.EntityRenderState;
-import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.entity.ProjectileEntityRenderer;
+import net.minecraft.client.render.entity.state.ProjectileEntityRenderState;
+import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 import strangequark.exploringfabric.entity.custom.TomahawkProjectileEntity;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
-public class TomahawkProjectileRenderer extends EntityRenderer<TomahawkProjectileEntity, EntityRenderState> {
+public class TomahawkProjectileRenderer extends ProjectileEntityRenderer<TomahawkProjectileEntity, ProjectileEntityRenderState> {
     protected TomahawkProjectileModel model;
 
     public TomahawkProjectileRenderer(EntityRendererFactory.Context ctx) {
@@ -20,9 +19,14 @@ public class TomahawkProjectileRenderer extends EntityRenderer<TomahawkProjectil
         this.model = new TomahawkProjectileModel(ctx.getPart(TomahawkProjectileModel.TOMAHAWK));
     }
 
+    @Override
+    protected Identifier getTexture(ProjectileEntityRenderState state) {
+        return createIdentifier("textures/entity/tomahawk/tomahawk.png");
+    }
 
     @Override
-    public void render(EntityRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+    public void render(ProjectileEntityRenderState projectileEntityRenderState, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, CameraRenderState cameraRenderState) {
+        /* TODO: Fix — vertexConsumer context not available in new rendering API (RCA: render() signature changed in 1.21.9+)
         matrices.push();
 
         VertexConsumer vertexconsumer = ItemRenderer.getItemGlintConsumer(
@@ -32,13 +36,13 @@ public class TomahawkProjectileRenderer extends EntityRenderer<TomahawkProjectil
                 false);
 
         this.model.render(matrices, vertexconsumer, light, OverlayTexture.DEFAULT_UV);
+        matrices.pop();*/
 
-        matrices.pop();
-        super.render(state, matrices, vertexConsumers, light);
+        super.render(projectileEntityRenderState, matrixStack, orderedRenderCommandQueue, cameraRenderState);
     }
 
     @Override
-    public EntityRenderState createRenderState() {
-        return new EntityRenderState();
+    public ProjectileEntityRenderState createRenderState() {
+        return new ProjectileEntityRenderState();
     }
 }

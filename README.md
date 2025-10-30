@@ -1,6 +1,7 @@
 # Exploring Minecraft Fabric
 
-A learning project for Minecraft modding with **Fabric API** for **Minecraft 1.21.5**, based on **Kaupenjoe's** tutorial series for **1.21.1**, adapted for the latest version of the game.
+A learning project for Minecraft modding with **Fabric API**, based on **Kaupenjoe's** tutorial series
+for **1.21.1**, adapted for the latest version of the game (1.21.10).
 
 ## Resources
 
