@@ -39,7 +39,7 @@ public abstract class SkeletonEntityMixin extends HostileEntity {
 
     @Inject(method = "initEquipment", at = @At("TAIL"))
     private void injectCustomBowEquipment(Random random, LocalDifficulty localDifficulty, CallbackInfo ci) {
-        DynamicRegistryManager registryManager = this.getWorld().getRegistryManager();
+        DynamicRegistryManager registryManager = this.getEntityWorld().getRegistryManager();
         RegistryEntry<Enchantment> lightningStrikerEntry = registryManager.getOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(ModEnchantments.LIGHTNING_STRIKER);
 
         if (this.getType() != EntityType.SKELETON) {

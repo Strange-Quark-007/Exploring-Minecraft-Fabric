@@ -51,7 +51,8 @@ public class ModItems {
 
     public static final Item HONEY_BERRIES = createItem("honey_berries", settings -> new BlockItem(ModBlocks.HONEY_BERRY_BUSH, settings.food(ModFoodComponents.HONEY_BERRIES)));
 
-    public static final Item MANTIS_SPAWN_EGG = createItem("mantis_spawn_egg", settings -> new SpawnEggItem(ModEntities.MANTIS, settings));
+    // TODO: Fix SpawnEggItem not spawning Mantis entity on use (RCA: unknown)
+    public static final Item MANTIS_SPAWN_EGG = createItem("mantis_spawn_egg", settings -> new SpawnEggItem(settings.spawnEgg(ModEntities.MANTIS)));
 
     public static final Item TOMAHAWK = createItem("tomahawk", TomahawkItem::new);
 

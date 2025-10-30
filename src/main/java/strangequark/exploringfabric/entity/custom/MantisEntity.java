@@ -24,7 +24,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -38,7 +37,7 @@ public class MantisEntity extends AnimalEntity {
 
     private static final TrackedData<Integer> TYPE_VARIANT = DataTracker.registerData(MantisEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-    public MantisEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+    public MantisEntity(EntityType<? extends MantisEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -75,7 +74,7 @@ public class MantisEntity extends AnimalEntity {
     public void tick() {
         super.tick();
 
-        if (this.getWorld().isClient()) {
+        if (this.getEntityWorld().isClient()) {
             this.setupAnimationStates();
         }
     }
@@ -132,7 +131,7 @@ public class MantisEntity extends AnimalEntity {
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData) {
-        boolean isColdBiome = world.getBiome(BlockPos.ofFloored(this.getPos())).isIn(BiomeTags.SPAWNS_COLD_VARIANT_FARM_ANIMALS);
+        boolean isColdBiome = world.getBiome(this.getBlockPos()).isIn(BiomeTags.SPAWNS_COLD_VARIANT_FARM_ANIMALS);
         MantisVariant variant = MantisVariant.byId(isColdBiome ? 1 : 0);
         setVariant(variant);
         return super.initialize(world, difficulty, spawnReason, entityData);

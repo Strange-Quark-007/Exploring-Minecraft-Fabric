@@ -42,10 +42,10 @@ public class TomahawkProjectileEntity extends PersistentProjectileEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
-        if (!this.getWorld().isClient()) {
-            entity.damage(((ServerWorld) this.getWorld()), this.getDamageSources().thrown(this, this.getOwner()), 25);
+        if (!this.getEntityWorld().isClient()) {
+            entity.damage(((ServerWorld) this.getEntityWorld()), this.getDamageSources().thrown(this, this.getOwner()), 25);
 
-            this.getWorld().sendEntityStatus(this, (byte) 3);
+            this.getEntityWorld().sendEntityStatus(this, (byte) 3);
             this.discard();
         }
     }
@@ -57,10 +57,10 @@ public class TomahawkProjectileEntity extends PersistentProjectileEntity {
      */
     @Override
     protected void onBlockHit(BlockHitResult result) {
-        World world = this.getWorld();
+        World world = this.getEntityWorld();
         BlockPos pos = result.getBlockPos();
         BlockState blockstate = world.getBlockState(pos);
-        if (!this.getWorld().isClient() && blockstate.isIn(ModTags.Blocks.TOMAHAWK_BREAKABLE)) {
+        if (!this.getEntityWorld().isClient() && blockstate.isIn(ModTags.Blocks.TOMAHAWK_BREAKABLE)) {
             world.breakBlock(pos, true, this.getOwner());
         } else {
             super.onBlockHit(result);
