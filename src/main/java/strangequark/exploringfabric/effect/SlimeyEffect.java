@@ -15,7 +15,6 @@ public class SlimeyEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        entity.velocityModified = true;
         if (entity.horizontalCollision) {
             Vec3d initialVec = entity.getVelocity();
             Vec3d climbVec = new Vec3d(initialVec.x, 0.2D, initialVec.z);

@@ -25,7 +25,7 @@ public class ModEnchantments {
         register(registerable, LIGHTNING_STRIKER,
                 Enchantment.builder(Enchantment.definition(
                                 items.getOrThrow(ModTags.Items.LIGHTNING_STRIKER_ENCHANTABLE),
-                                items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
+                                items.getOrThrow(ItemTags.SWORDS),
                                 5,
                                 5,
                                 Enchantment.leveledCost(10, 10),
