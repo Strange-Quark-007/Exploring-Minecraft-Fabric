@@ -5,8 +5,9 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Potions;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import strangequark.exploringfabric.block.ModBlocks;
@@ -52,7 +53,7 @@ public class ExploringFabric implements ModInitializer {
         ServerTickEvents.END_SERVER_TICK.register(new ArmorEffectHandler());
 
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder ->
-                builder.registerPotionRecipe(Potions.AWKWARD, Items.SLIME_BALL, ModPotions.SLIMEY_POTION)
+                builder.registerPotionRecipe(Potions.AWKWARD, Ingredient.of(Items.SLIME_BALL), ModPotions.SLIMEY_POTION)
         );
 
         StrippableBlockRegistry.register(ModBlocks.DRIFTWOOD_LOG, ModBlocks.STRIPPED_DRIFTWOOD_LOG);

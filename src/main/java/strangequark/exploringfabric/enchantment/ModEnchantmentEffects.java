@@ -1,9 +1,9 @@
 package strangequark.exploringfabric.enchantment;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.enchantment.custom.LightningStrikerEnchantmentEffect;
 
@@ -13,7 +13,7 @@ public class ModEnchantmentEffects {
     public static final MapCodec<? extends EnchantmentEntityEffect> LIGHTNING_STRIKER = registerEntityEffect("lightning_striker", LightningStrikerEnchantmentEffect.CODEC);
 
     private static MapCodec<? extends EnchantmentEntityEffect> registerEntityEffect(String name, MapCodec<? extends EnchantmentEntityEffect> codec) {
-        return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, createIdentifier(name), codec);
+        return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE, createIdentifier(name), codec);
     }
 
     public static void registerEnchantmentEffects() {

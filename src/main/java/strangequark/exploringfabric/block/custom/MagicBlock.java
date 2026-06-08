@@ -1,49 +1,51 @@
 package strangequark.exploringfabric.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import strangequark.exploringfabric.sound.ModSounds;
 import strangequark.exploringfabric.util.ModTags;
 
 public class MagicBlock extends Block {
 
-    public MagicBlock(Settings settings) {
-        super(settings);
+    public MagicBlock(Properties properties) {
+        super(properties);
+    }
+
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        level.playSound(player, blockPos, ModSounds.MAGIC_BLOCK_HIT, SoundSource.BLOCKS);
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        world.playSound(player, pos, ModSounds.MAGIC_BLOCK_HIT, SoundCategory.BLOCKS);
-        return ActionResult.SUCCESS;
-    }
-
-    @Override
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+    public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity) {
         if (entity instanceof ItemEntity itemEntity) {
-            if (!isValidItem(itemEntity.getStack())) {
+            if (!isValidItem(itemEntity.getItem())) {
                 return;
             }
-            itemEntity.setStack(new ItemStack(Items.DIAMOND, itemEntity.getStack().getCount()));
+            itemEntity.setItem(new ItemStack(Items.DIAMOND, itemEntity.getItem().getCount()));
 
-            if (!world.isClient()) {
-                world.playSound(entity, pos, ModSounds.MAGIC_BLOCK_STEP, SoundCategory.BLOCKS);
+            if (!level.isClientSide()) {
+                level.playSound(entity, blockPos, ModSounds.MAGIC_BLOCK_STEP, SoundSource.BLOCKS);
             }
         }
-        super.onSteppedOn(world, pos, state, entity);
+        super.stepOn(level, blockPos, blockState, entity);
     }
 
     private boolean isValidItem(ItemStack stack) {
-        return stack.isIn(ModTags.Items.TRANSFORMABLE_ITEMS);
+        return stack.is(ModTags.Items.TRANSFORMABLE_ITEMS);
     }
 
 

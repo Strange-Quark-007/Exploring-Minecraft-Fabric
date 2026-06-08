@@ -1,18 +1,20 @@
 package strangequark.exploringfabric.item.custom;
 
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+
+import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 
@@ -20,43 +22,43 @@ public class MagnetItem extends Item {
     private final int RADIUS = 10;
     private final float STRENGTH = 1.5F;
 
-    public MagnetItem(Settings settings) {
-        super(settings);
+    public MagnetItem(Properties properties) {
+        super(properties);
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        EquipmentSlot slot = hand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
+        ItemStack itemStack = player.getItemInHand(interactionHand);
+        EquipmentSlot slot = interactionHand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
 
-        if (world.isClient()) {
-            return ActionResult.PASS;
+        if (level.isClientSide()) {
+            return InteractionResult.PASS;
         }
 
-        List<Entity> entities = world.getOtherEntities(user, user.getBoundingBox().expand(RADIUS), e -> e instanceof net.minecraft.entity.ItemEntity);
+        List<Entity> entities = level.getEntities(player, player.getBoundingBox().inflate(RADIUS), e -> e instanceof ItemEntity);
 
         for (Entity entity : entities) {
-            double dx = user.getX() - entity.getX();
-            double dy = user.getY() + 1.0 - entity.getY();
-            double dz = user.getZ() - entity.getZ();
+            double dx = player.getX() - entity.getX();
+            double dy = player.getY() + 1.0 - entity.getY();
+            double dz = player.getZ() - entity.getZ();
             double distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
             if (distance > 0) {
-                entity.setVelocity(
-                        entity.getVelocity().x + (dx / distance) * STRENGTH,
-                        entity.getVelocity().y + (dy / distance) * STRENGTH,
-                        entity.getVelocity().z + (dz / distance) * STRENGTH
+                entity.setDeltaMovement(
+                        entity.getDeltaMovement().x + (dx / distance) * STRENGTH,
+                        entity.getDeltaMovement().y + (dy / distance) * STRENGTH,
+                        entity.getDeltaMovement().z + (dz / distance) * STRENGTH
                 );
             }
         }
-        itemStack.damage(entities.size(), (ServerWorld) world, (ServerPlayerEntity) user, item -> {
-            user.sendEquipmentBreakStatus(item, slot);
+        itemStack.hurtAndBreak(entities.size(), (ServerLevel) level, (ServerPlayer) player, item -> {
+            player.onEquippedItemBroken(item, slot);
         });
-        return ActionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
+    public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
         return super.canBeEnchantedWith(stack, enchantment, context);
     }
 }

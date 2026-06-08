@@ -1,13 +1,13 @@
 package strangequark.exploringfabric.world.feature.configured;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.SimpleBlockFeatureConfig;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
 import strangequark.exploringfabric.world.feature.ModConfiguredFeatures;
@@ -15,13 +15,13 @@ import strangequark.exploringfabric.world.feature.ModConfiguredFeatures;
 import java.util.List;
 
 public class ModVegetationConfiguredFeatures {
-    public static final RegistryKey<ConfiguredFeature<?, ?>> HONEY_BERRY_BUSH = ModConfiguredFeatures.of("honey_berry_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HONEY_BERRY_BUSH = ModConfiguredFeatures.of("honey_berry_bush");
 
-    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> featureRegisterable) {
+    public static void bootstrap(BootstrapContext<net.minecraft.world.level.levelgen.feature.ConfiguredFeature<?, ?>> featureRegisterable) {
         ModConfiguredFeatures.register(featureRegisterable, HONEY_BERRY_BUSH, Feature.RANDOM_PATCH,
-                ConfiguredFeatures.createRandomPatchFeatureConfig(
+                FeatureUtils.simplePatchConfiguration(
                         Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.HONEY_BERRY_BUSH.getDefaultState().with(HoneyBerryBushBlock.AGE, 3))),
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.HONEY_BERRY_BUSH.defaultBlockState().setValue(HoneyBerryBushBlock.AGE, 3))),
                         List.of(Blocks.GRASS_BLOCK)
                 )
         );

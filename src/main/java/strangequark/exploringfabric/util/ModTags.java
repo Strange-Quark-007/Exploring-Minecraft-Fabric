@@ -1,10 +1,10 @@
 package strangequark.exploringfabric.util;
 
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
@@ -16,7 +16,7 @@ public class ModTags {
         public static final TagKey<Block> TOMAHAWK_BREAKABLE = createTag("tomahawk_breakable");
 
         private static TagKey<Block> createTag(String name) {
-            return TagKey.of(RegistryKeys.BLOCK, createIdentifier(name));
+            return TagKey.create(Registries.BLOCK, createIdentifier(name));
         }
     }
 
@@ -30,7 +30,7 @@ public class ModTags {
         public static final TagKey<Item> LIGHTNING_STRIKER_ENCHANTABLE = createTag("lightning_striker_enchantable");
 
         private static TagKey<Item> createTag(String name) {
-            return TagKey.of(RegistryKeys.ITEM, createIdentifier(name));
+            return TagKey.create(Registries.ITEM, createIdentifier(name));
         }
     }
 }

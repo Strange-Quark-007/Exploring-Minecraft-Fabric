@@ -1,8 +1,8 @@
 package strangequark.exploringfabric.item;
 
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 @FunctionalInterface
 public interface ItemFactory<T extends Item> {
-    T create(Item.Settings settings);
+    T create(Item.Properties properties);
 }

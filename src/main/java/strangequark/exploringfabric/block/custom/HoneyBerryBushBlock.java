@@ -1,45 +1,47 @@
 package strangequark.exploringfabric.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SweetBerryBushBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
 import strangequark.exploringfabric.item.ModItems;
 
 public class HoneyBerryBushBlock extends SweetBerryBushBlock {
-    public HoneyBerryBushBlock(Settings settings) {
-        super(settings);
+    public HoneyBerryBushBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
-    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
+    protected ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
         return new ItemStack(ModItems.HONEY_BERRIES);
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        int i = (Integer) state.get(AGE);
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        int i = blockState.getValue(AGE);
         boolean bl = i == 3;
 
         if (i <= 1) {
-            return super.onUse(state, world, pos, player, hit);
+            return super.useWithoutItem(blockState, level, blockPos, player, blockHitResult);
         }
 
-        int j = 1 + world.random.nextInt(2);
-        dropStack(world, pos, new ItemStack(ModItems.HONEY_BERRIES, j + (bl ? 1 : 0)));
-        world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-        BlockState blockState = state.with(AGE, 1);
-        world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
-        return ActionResult.SUCCESS;
+        int j = 1 + level.random.nextInt(2);
+        popResource(level, blockPos, new ItemStack(ModItems.HONEY_BERRIES, j + (bl ? 1 : 0)));
+        level.playSound(null, blockPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+
+        BlockState newBlockState = blockState.setValue(AGE, 1);
+        level.setBlock(blockPos, newBlockState, Block.UPDATE_CLIENTS);
+        level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, newBlockState));
+
+        return InteractionResult.SUCCESS;
     }
 }

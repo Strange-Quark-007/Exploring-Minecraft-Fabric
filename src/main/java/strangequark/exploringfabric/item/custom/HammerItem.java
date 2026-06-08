@@ -1,14 +1,16 @@
 package strangequark.exploringfabric.item.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,23 +18,23 @@ import java.util.List;
 public class HammerItem extends Item {
     private static final int RANGE = 1;
 
-    public HammerItem(Settings settings) {
-        super(settings);
+    public HammerItem(Properties properties) {
+        super(properties);
     }
 
 
-    public static List<BlockPos> getBlocksToBeDestroyed(World world, BlockPos initalBlockPos, ServerPlayerEntity player) {
+    public static List<BlockPos> getBlocksToBeDestroyed(Level world, BlockPos initalBlockPos, ServerPlayer player) {
         List<BlockPos> positions = new ArrayList<>();
-        HitResult hit = player.raycast(20, 0, false);
+        HitResult hit = player.pick(20, 0, false);
 
-        if (world.isClient()) {
+        if (world.isClientSide()) {
             return new ArrayList<>();
         }
 
         if (hit.getType() == HitResult.Type.BLOCK) {
             BlockHitResult blockHit = (BlockHitResult) hit;
             Block block = world.getBlockState(initalBlockPos).getBlock();
-            float hardness = block.getHardness();
+            float hardness = block.getExplosionResistance();
 
             /*
              * Prevent instant-mineable blocks (zero hardness) from breaking adjacent solid blocks.
@@ -44,33 +46,33 @@ public class HammerItem extends Item {
                 return positions;
             }
 
-            if (blockHit.getSide() == Direction.DOWN || blockHit.getSide() == Direction.UP) {
+            if (blockHit.getDirection() == Direction.DOWN || blockHit.getDirection() == Direction.UP) {
                 for (int x = -RANGE; x <= RANGE; x++) {
                     for (int y = -RANGE; y <= RANGE; y++) {
                         var blockPos = new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY(), initalBlockPos.getZ() + y);
-                        if (world.getBlockState(blockPos).getBlock().getHardness() <= hardness) {
+                        if (world.getBlockState(blockPos).getBlock().getExplosionResistance() <= hardness) {
                             positions.add(blockPos);
                         }
                     }
                 }
             }
 
-            if (blockHit.getSide() == Direction.NORTH || blockHit.getSide() == Direction.SOUTH) {
+            if (blockHit.getDirection() == Direction.NORTH || blockHit.getDirection() == Direction.SOUTH) {
                 for (int x = -RANGE; x <= RANGE; x++) {
                     for (int y = -RANGE; y <= RANGE; y++) {
                         var blockPos = new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY() + y, initalBlockPos.getZ());
-                        if (world.getBlockState(blockPos).getBlock().getHardness() <= hardness) {
+                        if (world.getBlockState(blockPos).getBlock().getExplosionResistance() <= hardness) {
                             positions.add(blockPos);
                         }
                     }
                 }
             }
 
-            if (blockHit.getSide() == Direction.EAST || blockHit.getSide() == Direction.WEST) {
+            if (blockHit.getDirection() == Direction.EAST || blockHit.getDirection() == Direction.WEST) {
                 for (int x = -RANGE; x <= RANGE; x++) {
                     for (int y = -RANGE; y <= RANGE; y++) {
                         var blockPos = new BlockPos(initalBlockPos.getX(), initalBlockPos.getY() + y, initalBlockPos.getZ() + x);
-                        if (world.getBlockState(blockPos).getBlock().getHardness() <= hardness) {
+                        if (world.getBlockState(blockPos).getBlock().getExplosionResistance() <= hardness) {
                             positions.add(blockPos);
                         }
                     }

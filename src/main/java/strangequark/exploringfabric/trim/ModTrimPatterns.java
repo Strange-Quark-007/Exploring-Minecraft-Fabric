@@ -1,27 +1,27 @@
 package strangequark.exploringfabric.trim;
 
-import net.minecraft.item.equipment.trim.ArmorTrimPattern;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.text.Text;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Util;
+import net.minecraft.world.item.equipment.trim.TrimPattern;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModTrimPatterns {
-    public static final RegistryKey<ArmorTrimPattern> QUARK = of("quark");
+    public static final ResourceKey<TrimPattern> QUARK = of("quark");
 
-    public static void bootstrap(Registerable<ArmorTrimPattern> registerable) {
-        register(registerable, QUARK);
+    public static void bootstrap(BootstrapContext<TrimPattern> context) {
+        register(context, QUARK);
     }
 
-    public static void register(Registerable<ArmorTrimPattern> registry, RegistryKey<ArmorTrimPattern> key) {
-        ArmorTrimPattern armorTrimPattern = new ArmorTrimPattern(key.getValue(), Text.translatable(Util.createTranslationKey("trim_pattern", key.getValue())), false);
-        registry.register(key, armorTrimPattern);
+    public static void register(BootstrapContext<TrimPattern> registry, ResourceKey<TrimPattern> key) {
+        TrimPattern trimPattern = new TrimPattern(key.identifier(), Component.translatable(Util.makeDescriptionId("trim_pattern", key.identifier())), false);
+        registry.register(key, trimPattern);
     }
 
-    private static RegistryKey<ArmorTrimPattern> of(String id) {
-        return RegistryKey.of(RegistryKeys.TRIM_PATTERN, createIdentifier(id));
+    private static ResourceKey<TrimPattern> of(String id) {
+        return ResourceKey.create(Registries.TRIM_PATTERN, createIdentifier(id));
     }
 }

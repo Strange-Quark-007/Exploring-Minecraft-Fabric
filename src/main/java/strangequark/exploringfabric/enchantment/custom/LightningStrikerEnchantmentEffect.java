@@ -1,38 +1,38 @@
 package strangequark.exploringfabric.enchantment.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.enchantment.EnchantmentEffectContext;
-import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.enchantment.EnchantedItemInUse;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.minecraft.world.phys.Vec3;
 
 public record LightningStrikerEnchantmentEffect() implements EnchantmentEntityEffect {
     public static final MapCodec<LightningStrikerEnchantmentEffect> CODEC = MapCodec.unit(LightningStrikerEnchantmentEffect::new);
 
     @Override
-    public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
-        Random random = Random.create();
-        var userPos = user.getBlockPos();
-        int strikes = (int) Math.round(Math.pow(level, 2));
+    public void apply(ServerLevel level, int enchantLevel, EnchantedItemInUse context, Entity user, Vec3 pos) {
+        RandomSource random = RandomSource.create();
+        var userPos = user.blockPosition();
+        int strikes = (int) Math.round(Math.pow(enchantLevel, 2));
 
-        if (!world.isSkyVisibleAllowingSea(userPos)) {
+        if (!level.canSeeSky(userPos)) {
             return;
         }
 
         for (int i = 0; i < strikes; i++) {
-            var blockPos = user.getBlockPos();
-            int offset = random.nextBetween(-1, 1);
-            var strikePos = blockPos.add(offset, 0, offset);
-            EntityType.LIGHTNING_BOLT.spawn(world, strikePos, SpawnReason.TRIGGERED);
+            var blockPos = user.blockPosition();
+            int offset = random.nextInt(3) - 1;
+            var strikePos = blockPos.offset(offset, 0, offset);
+            EntityType.LIGHTNING_BOLT.spawn(level, strikePos, EntitySpawnReason.TRIGGERED);
         }
     }
 
     @Override
-    public MapCodec<? extends EnchantmentEntityEffect> getCodec() {
+    public MapCodec<? extends EnchantmentEntityEffect> codec() {
         return CODEC;
     }
 }

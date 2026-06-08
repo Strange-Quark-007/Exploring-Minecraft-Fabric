@@ -2,13 +2,17 @@ package strangequark.exploringfabric.datagen;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.*;
-import net.minecraft.client.render.item.model.ItemModel;
-import net.minecraft.client.render.item.property.bool.HasComponentProperty;
-import net.minecraft.client.render.item.property.numeric.UseDurationProperty;
-import net.minecraft.client.render.model.json.WeightedVariant;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.renderer.item.properties.conditional.HasComponent;
+import net.minecraft.client.renderer.item.properties.conditional.IsUsingItem;
+import net.minecraft.client.renderer.item.properties.numeric.UseDuration;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
 import strangequark.exploringfabric.armor.ModEquipmentAssetKeys;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.CauliflowersBlock;
@@ -25,20 +29,17 @@ public class ModModelProvider extends FabricModelProvider {
     }
 
     @Override
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        BlockStateModelGenerator.BlockTexturePool pinkGarnetPool =
-                blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.PINK_GARNET_BLOCK);
+    public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
+        BlockModelGenerators.BlockFamilyProvider pinkGarnetPool = blockStateModelGenerator.family(ModBlocks.PINK_GARNET_BLOCK);
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_NETHER_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_END_ORE);
-
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MAGIC_BLOCK);
-
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PINK_GARNET_BLOCK);
-        blockStateModelGenerator.registerDoor(ModBlocks.PINK_GARNET_DOOR);
-        blockStateModelGenerator.registerTrapdoor(ModBlocks.PINK_GARNET_TRAPDOOR);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.PINK_GARNET_ORE);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.PINK_GARNET_NETHER_ORE);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.PINK_GARNET_END_ORE);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.MAGIC_BLOCK);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.RAW_PINK_GARNET_BLOCK);
+        blockStateModelGenerator.createDoor(ModBlocks.PINK_GARNET_DOOR);
+        blockStateModelGenerator.createTrapdoor(ModBlocks.PINK_GARNET_TRAPDOOR);
 
         pinkGarnetPool.slab(ModBlocks.PINK_GARNET_SLAB);
         pinkGarnetPool.stairs(ModBlocks.PINK_GARNET_STAIRS);
@@ -48,34 +49,31 @@ public class ModModelProvider extends FabricModelProvider {
         pinkGarnetPool.button(ModBlocks.PINK_GARNET_BUTTON);
         pinkGarnetPool.pressurePlate(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
 
-        WeightedVariant offVariant = BlockStateModelGenerator.createWeightedVariant(
-                TexturedModel.CUBE_ALL.upload(ModBlocks.PINK_GARNET_LAMP, blockStateModelGenerator.modelCollector)
+        MultiVariant offVariant = BlockModelGenerators.plainVariant(
+                TexturedModel.CUBE.create(ModBlocks.PINK_GARNET_LAMP, blockStateModelGenerator.modelOutput)
         );
-        WeightedVariant onVariant = BlockStateModelGenerator.createWeightedVariant(
-                blockStateModelGenerator.createSubModel(ModBlocks.PINK_GARNET_LAMP, "_on", Models.CUBE_ALL, TextureMap::all)
-        );
-
-        blockStateModelGenerator.blockStateCollector.accept(
-                VariantsBlockModelDefinitionCreator
-                        .of(ModBlocks.PINK_GARNET_LAMP)
-                        .with(BlockStateModelGenerator.createBooleanModelMap(PinkGarnetLampBlock.CLICKED, onVariant, offVariant))
+        MultiVariant onVariant = BlockModelGenerators.plainVariant(
+                blockStateModelGenerator.createSuffixedVariant(ModBlocks.PINK_GARNET_LAMP, "_on", ModelTemplates.CUBE_ALL, TextureMapping::cube)
         );
 
-        blockStateModelGenerator.registerCrop(ModBlocks.CAULIFLOWERS, CauliflowersBlock.AGE, 0, 1, 2, 3, 4, 5, 6);
+        blockStateModelGenerator.blockStateOutput.accept(
+                MultiVariantGenerator
+                        .dispatch(ModBlocks.PINK_GARNET_LAMP)
+                        .with(BlockModelGenerators.createBooleanModelDispatch(PinkGarnetLampBlock.CLICKED, onVariant, offVariant))
+        );
 
-        blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.HONEY_BERRY_BUSH, BlockStateModelGenerator.CrossType.NOT_TINTED, HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
+        blockStateModelGenerator.createCropBlock(ModBlocks.CAULIFLOWERS, CauliflowersBlock.AGE, 0, 1, 2, 3, 4, 5, 6);
+        blockStateModelGenerator.createCrossBlock(ModBlocks.HONEY_BERRY_BUSH, BlockModelGenerators.PlantType.NOT_TINTED, HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
 
-
-        blockStateModelGenerator.createLogTexturePool(ModBlocks.DRIFTWOOD_LOG)
+        blockStateModelGenerator.woodProvider(ModBlocks.DRIFTWOOD_LOG)
                 .log(ModBlocks.DRIFTWOOD_LOG)
                 .wood(ModBlocks.DRIFTWOOD_WOOD);
 
-        blockStateModelGenerator.createLogTexturePool(ModBlocks.STRIPPED_DRIFTWOOD_LOG)
+        blockStateModelGenerator.woodProvider(ModBlocks.STRIPPED_DRIFTWOOD_LOG)
                 .log(ModBlocks.STRIPPED_DRIFTWOOD_LOG)
                 .wood(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
 
-        BlockStateModelGenerator.BlockTexturePool driftwoodPool =
-                blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.DRIFTWOOD_PLANKS);
+        BlockModelGenerators.BlockFamilyProvider driftwoodPool = blockStateModelGenerator.family(ModBlocks.DRIFTWOOD_PLANKS);
 
         driftwoodPool.slab(ModBlocks.DRIFTWOOD_SLAB);
         driftwoodPool.stairs(ModBlocks.DRIFTWOOD_STAIRS);
@@ -84,64 +82,73 @@ public class ModModelProvider extends FabricModelProvider {
         driftwoodPool.button(ModBlocks.DRIFTWOOD_BUTTON);
         driftwoodPool.pressurePlate(ModBlocks.DRIFTWOOD_PRESSURE_PLATE);
 
-        blockStateModelGenerator.registerSingleton(ModBlocks.DRIFTWOOD_LEAVES, TexturedModel.LEAVES);
-        blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.DRIFTWOOD_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
-        blockStateModelGenerator.registerNorthDefaultHorizontalRotatable(ModBlocks.CHAIR);
+        blockStateModelGenerator.createTrivialBlock(ModBlocks.DRIFTWOOD_LEAVES, TexturedModel.LEAVES);
+        blockStateModelGenerator.createCrossBlock(ModBlocks.DRIFTWOOD_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
+        blockStateModelGenerator.createHorizontallyRotatedBlock(ModBlocks.CHAIR, TexturedModel.ORIENTABLE);
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
-        /*
-         * itemModelGenerator.register(ModItems.CHISEL, Models.GENERATED); // Regular Item registration without predicate
-         * itemModelGenerator.register(ModItems.CAULIFLOWER, Models.GENERATED); // Registered via block state model generator
-         */
-        itemModelGenerator.register(ModItems.STARLIGHT_ASHES, Models.GENERATED);
+    public void generateItemModels(ItemModelGenerators itemModelGenerator) {
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.RAW_PINK_GARNET, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.STARLIGHT_ASHES, ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.register(ModItems.PINK_GARNET_SWORD, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.PINK_GARNET_PICKAXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.PINK_GARNET_SHOVEL, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.PINK_GARNET_AXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.PINK_GARNET_HOE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.PINK_GARNET_HAMMER, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.PINK_GARNET_MAGNET, Models.HANDHELD);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_PICKAXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_SHOVEL, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_AXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_HOE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_HAMMER, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_MAGNET, ModelTemplates.FLAT_HANDHELD_ITEM);
 
-        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_HELMET, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_CHESTPLATE, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
-        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_LEGGINGS, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
-        itemModelGenerator.registerArmor(ModItems.PINK_GARNET_BOOTS, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        itemModelGenerator.generateTrimmableItem(ModItems.PINK_GARNET_HELMET, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        itemModelGenerator.generateTrimmableItem(ModItems.PINK_GARNET_CHESTPLATE, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        itemModelGenerator.generateTrimmableItem(ModItems.PINK_GARNET_LEGGINGS, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        itemModelGenerator.generateTrimmableItem(ModItems.PINK_GARNET_BOOTS, ModEquipmentAssetKeys.PINK_GARNET, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
 
-        itemModelGenerator.register(ModItems.PINK_GARNET_HORSE_ARMOR, Models.GENERATED);
-        itemModelGenerator.register(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE, Models.GENERATED);
-
-        itemModelGenerator.register(ModBlocks.DRIFTWOOD_SAPLING.asItem(), Models.GENERATED);
+        itemModelGenerator.generateFlatItem(ModItems.PINK_GARNET_HORSE_ARMOR, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModBlocks.DRIFTWOOD_SAPLING.asItem(), ModelTemplates.FLAT_ITEM);
 
         Item chisel = ModItems.CHISEL;
-        ItemModel.Unbaked unusedChisel = ItemModels.basic(itemModelGenerator.upload(chisel, Models.GENERATED));
-        ItemModel.Unbaked usedChisel = ItemModels.basic(itemModelGenerator.registerSubModel(chisel, "_used", Models.GENERATED));
+        Identifier usedChiselId = ModelLocationUtils.getModelLocation(chisel, "_used");
 
-        itemModelGenerator.registerCondition(
+        ItemModel.Unbaked unusedChisel = ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(chisel, TextureMapping.layer0(chisel), itemModelGenerator.modelOutput));
+        ItemModel.Unbaked usedChisel = ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(usedChiselId, TextureMapping.layer0(usedChiselId), itemModelGenerator.modelOutput));
+
+        itemModelGenerator.itemModelOutput.accept(
                 chisel,
-                new HasComponentProperty(ModDataComponentTypes.COORDINATES, true),
-                usedChisel,
-                unusedChisel
+                ItemModelUtils.conditional(
+                        new HasComponent(ModDataComponentTypes.COORDINATES, true),
+                        usedChisel,
+                        unusedChisel
+                )
         );
 
         Item bow = ModItems.QUARK_BOW;
-        ItemModel.Unbaked unbakedBow = ItemModels.basic(itemModelGenerator.upload(bow, Models.BOW));
-        ItemModel.Unbaked unbakedBow2 = ItemModels.basic(itemModelGenerator.registerSubModel(bow, "_pulling_0", Models.BOW));
-        ItemModel.Unbaked unbakedBow3 = ItemModels.basic(itemModelGenerator.registerSubModel(bow, "_pulling_1", Models.BOW));
-        ItemModel.Unbaked unbakedBow4 = ItemModels.basic(itemModelGenerator.registerSubModel(bow, "_pulling_2", Models.BOW));
+        net.minecraft.resources.Identifier bow0 = ModelLocationUtils.getModelLocation(bow, "_pulling_0");
+        net.minecraft.resources.Identifier bow1 = ModelLocationUtils.getModelLocation(bow, "_pulling_1");
+        net.minecraft.resources.Identifier bow2 = ModelLocationUtils.getModelLocation(bow, "_pulling_2");
 
-        itemModelGenerator.registerCondition(
+        ItemModel.Unbaked unbakedBow = ItemModelUtils.plainModel(ModelTemplates.BOW.create(bow, TextureMapping.layer0(bow), itemModelGenerator.modelOutput));
+        ItemModel.Unbaked unbakedBow2 = ItemModelUtils.plainModel(ModelTemplates.BOW.create(bow0, TextureMapping.layer0(bow0), itemModelGenerator.modelOutput));
+        ItemModel.Unbaked unbakedBow3 = ItemModelUtils.plainModel(ModelTemplates.BOW.create(bow1, TextureMapping.layer0(bow1), itemModelGenerator.modelOutput));
+        ItemModel.Unbaked unbakedBow4 = ItemModelUtils.plainModel(ModelTemplates.BOW.create(bow2, TextureMapping.layer0(bow2), itemModelGenerator.modelOutput));
+
+        itemModelGenerator.itemModelOutput.accept(
                 bow,
-                ItemModels.usingItemProperty(),
-                ItemModels.rangeDispatch(new UseDurationProperty(false), 0.05F, unbakedBow2, ItemModels.rangeDispatchEntry(unbakedBow3, 0.65F), ItemModels.rangeDispatchEntry(unbakedBow4, 0.9F)),
-                unbakedBow
+                ItemModelUtils.conditional(
+                        new IsUsingItem(),
+                        ItemModelUtils.rangeSelect(
+                                new UseDuration(false),
+                                0.05F, unbakedBow2,
+                                ItemModelUtils.override(unbakedBow3, 0.65F),
+                                ItemModelUtils.override(unbakedBow4, 0.9F)
+                        ),
+                        unbakedBow
+                )
         );
 
-        // Reuse brown chicken egg texture
-        itemModelGenerator.register(ModItems.MANTIS_SPAWN_EGG, new Model(Optional.of(Identifier.of("item/brown_egg")), Optional.empty()));
+        itemModelGenerator.generateFlatItem(ModItems.MANTIS_SPAWN_EGG, new ModelTemplate(Optional.of(Identifier.withDefaultNamespace("item/brown_egg")), Optional.empty()));
     }
 }

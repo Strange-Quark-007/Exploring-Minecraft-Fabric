@@ -1,11 +1,11 @@
 package strangequark.exploringfabric.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.text.Text;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.block.ModBlocks;
 
@@ -13,101 +13,101 @@ import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModItemGroups {
 
-    public static final ItemGroup PINK_GARNET_ITEMS_GROUP = Registry.register(Registries.ITEM_GROUP,
+    public static final CreativeModeTab PINK_GARNET_ITEMS_GROUP = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
             createIdentifier("pink_garnet_items"),
             FabricItemGroup.builder()
                     .icon(() -> new ItemStack(ModItems.PINK_GARNET))
-                    .displayName(Text.translatable("itemgroup.exploringfabric.pink_garnet_items"))
-                    .entries((displayContext, entries) -> {
-                        entries.add(ModItems.PINK_GARNET);
-                        entries.add(ModItems.RAW_PINK_GARNET);
-                        entries.add(ModItems.PINK_GARNET_MAGNET);
-                        entries.add(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE);
+                    .title(Component.translatable("itemgroup.exploringfabric.pink_garnet_items"))
+                    .displayItems((displayContext, entries) -> {
+                        entries.accept(ModItems.PINK_GARNET);
+                        entries.accept(ModItems.RAW_PINK_GARNET);
+                        entries.accept(ModItems.PINK_GARNET_MAGNET);
+                        entries.accept(ModItems.QUARK_ARMOR_TRIM_SMITHING_TEMPLATE);
                     })
                     .build());
 
-    public static final ItemGroup PINK_GARNET_BLOCKS_GROUP = Registry.register(Registries.ITEM_GROUP,
+    public static final CreativeModeTab PINK_GARNET_BLOCKS_GROUP = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
             createIdentifier("pink_garnet_blocks"),
             FabricItemGroup.builder()
                     .icon(() -> new ItemStack(ModBlocks.PINK_GARNET_BLOCK))
-                    .displayName(Text.translatable("itemgroup.exploringfabric.pink_garnet_blocks"))
-                    .entries((displayContext, entries) -> {
-                        entries.add(ModBlocks.PINK_GARNET_ORE);
-                        entries.add(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
-                        entries.add(ModBlocks.PINK_GARNET_NETHER_ORE);
-                        entries.add(ModBlocks.PINK_GARNET_END_ORE);
-                        entries.add(ModBlocks.PINK_GARNET_BLOCK);
-                        entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
-                        entries.add(ModBlocks.PINK_GARNET_SLAB);
-                        entries.add(ModBlocks.PINK_GARNET_STAIRS);
-                        entries.add(ModBlocks.PINK_GARNET_FENCE);
-                        entries.add(ModBlocks.PINK_GARNET_FENCE_GATE);
-                        entries.add(ModBlocks.PINK_GARNET_WALL);
-                        entries.add(ModBlocks.PINK_GARNET_DOOR);
-                        entries.add(ModBlocks.PINK_GARNET_TRAPDOOR);
-                        entries.add(ModBlocks.PINK_GARNET_BUTTON);
-                        entries.add(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
-                        entries.add(ModBlocks.PINK_GARNET_LAMP);
+                    .title(Component.translatable("itemgroup.exploringfabric.pink_garnet_blocks"))
+                    .displayItems((displayContext, entries) -> {
+                        entries.accept(ModBlocks.PINK_GARNET_ORE);
+                        entries.accept(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
+                        entries.accept(ModBlocks.PINK_GARNET_NETHER_ORE);
+                        entries.accept(ModBlocks.PINK_GARNET_END_ORE);
+                        entries.accept(ModBlocks.PINK_GARNET_BLOCK);
+                        entries.accept(ModBlocks.RAW_PINK_GARNET_BLOCK);
+                        entries.accept(ModBlocks.PINK_GARNET_SLAB);
+                        entries.accept(ModBlocks.PINK_GARNET_STAIRS);
+                        entries.accept(ModBlocks.PINK_GARNET_FENCE);
+                        entries.accept(ModBlocks.PINK_GARNET_FENCE_GATE);
+                        entries.accept(ModBlocks.PINK_GARNET_WALL);
+                        entries.accept(ModBlocks.PINK_GARNET_DOOR);
+                        entries.accept(ModBlocks.PINK_GARNET_TRAPDOOR);
+                        entries.accept(ModBlocks.PINK_GARNET_BUTTON);
+                        entries.accept(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
+                        entries.accept(ModBlocks.PINK_GARNET_LAMP);
                     })
                     .build());
 
-    public static final ItemGroup PINK_GARNET_EQUIPMENT_GROUP = Registry.register(Registries.ITEM_GROUP,
+    public static final CreativeModeTab PINK_GARNET_EQUIPMENT_GROUP = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
             createIdentifier("pink_garnet_equipment"),
             FabricItemGroup.builder()
                     .icon(() -> new ItemStack(ModItems.PINK_GARNET_SWORD))
-                    .displayName(Text.translatable("itemgroup.exploringfabric.pink_garnet_equipment"))
-                    .entries((displayContext, entries) -> {
-                        entries.add(ModItems.PINK_GARNET_HAMMER);
-                        entries.add(ModItems.PINK_GARNET_SWORD);
-                        entries.add(ModItems.PINK_GARNET_PICKAXE);
-                        entries.add(ModItems.PINK_GARNET_AXE);
-                        entries.add(ModItems.PINK_GARNET_SHOVEL);
-                        entries.add(ModItems.PINK_GARNET_HOE);
-                        entries.add(ModItems.QUARK_BOW);
-                        entries.add(ModItems.PINK_GARNET_HELMET);
-                        entries.add(ModItems.PINK_GARNET_CHESTPLATE);
-                        entries.add(ModItems.PINK_GARNET_LEGGINGS);
-                        entries.add(ModItems.PINK_GARNET_BOOTS);
-                        entries.add(ModItems.PINK_GARNET_HORSE_ARMOR);
+                    .title(Component.translatable("itemgroup.exploringfabric.pink_garnet_equipment"))
+                    .displayItems((displayContext, entries) -> {
+                        entries.accept(ModItems.PINK_GARNET_HAMMER);
+                        entries.accept(ModItems.PINK_GARNET_SWORD);
+                        entries.accept(ModItems.PINK_GARNET_PICKAXE);
+                        entries.accept(ModItems.PINK_GARNET_AXE);
+                        entries.accept(ModItems.PINK_GARNET_SHOVEL);
+                        entries.accept(ModItems.PINK_GARNET_HOE);
+                        entries.accept(ModItems.QUARK_BOW);
+                        entries.accept(ModItems.PINK_GARNET_HELMET);
+                        entries.accept(ModItems.PINK_GARNET_CHESTPLATE);
+                        entries.accept(ModItems.PINK_GARNET_LEGGINGS);
+                        entries.accept(ModItems.PINK_GARNET_BOOTS);
+                        entries.accept(ModItems.PINK_GARNET_HORSE_ARMOR);
                     })
                     .build());
 
-    public static final ItemGroup DRIFTWOOD_GROUP = Registry.register(Registries.ITEM_GROUP,
+    public static final CreativeModeTab DRIFTWOOD_GROUP = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
             createIdentifier("drftwood_items"),
             FabricItemGroup.builder()
                     .icon(() -> new ItemStack(ModBlocks.DRIFTWOOD_LOG))
-                    .displayName(Text.translatable("itemgroup.exploringfabric.driftwood_items"))
-                    .entries((displayContext, entries) -> {
-                        entries.add(ModBlocks.DRIFTWOOD_LOG);
-                        entries.add(ModBlocks.DRIFTWOOD_WOOD);
-                        entries.add(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
-                        entries.add(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
-                        entries.add(ModBlocks.DRIFTWOOD_PLANKS);
-                        entries.add(ModBlocks.DRIFTWOOD_SLAB);
-                        entries.add(ModBlocks.DRIFTWOOD_STAIRS);
-                        entries.add(ModBlocks.DRIFTWOOD_FENCE);
-                        entries.add(ModBlocks.DRIFTWOOD_FENCE_GATE);
-                        entries.add(ModBlocks.DRIFTWOOD_BUTTON);
-                        entries.add(ModBlocks.DRIFTWOOD_PRESSURE_PLATE);
-                        entries.add(ModBlocks.DRIFTWOOD_LEAVES);
-                        entries.add(ModBlocks.DRIFTWOOD_SAPLING);
+                    .title(Component.translatable("itemgroup.exploringfabric.driftwood_items"))
+                    .displayItems((displayContext, entries) -> {
+                        entries.accept(ModBlocks.DRIFTWOOD_LOG);
+                        entries.accept(ModBlocks.DRIFTWOOD_WOOD);
+                        entries.accept(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
+                        entries.accept(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+                        entries.accept(ModBlocks.DRIFTWOOD_PLANKS);
+                        entries.accept(ModBlocks.DRIFTWOOD_SLAB);
+                        entries.accept(ModBlocks.DRIFTWOOD_STAIRS);
+                        entries.accept(ModBlocks.DRIFTWOOD_FENCE);
+                        entries.accept(ModBlocks.DRIFTWOOD_FENCE_GATE);
+                        entries.accept(ModBlocks.DRIFTWOOD_BUTTON);
+                        entries.accept(ModBlocks.DRIFTWOOD_PRESSURE_PLATE);
+                        entries.accept(ModBlocks.DRIFTWOOD_LEAVES);
+                        entries.accept(ModBlocks.DRIFTWOOD_SAPLING);
                     })
                     .build());
 
-    public static final ItemGroup MISC_MOD_GROUP = Registry.register(Registries.ITEM_GROUP,
+    public static final CreativeModeTab MISC_MOD_GROUP = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
             createIdentifier("misc_mod_stuff"),
             FabricItemGroup.builder()
                     .icon(() -> new ItemStack(ModItems.CHISEL))
-                    .displayName(Text.translatable("itemgroup.exploringfabric.misc_mod_stuff"))
-                    .entries((displayContext, entries) -> {
-                        entries.add(ModBlocks.MAGIC_BLOCK);
-                        entries.add(ModBlocks.CHAIR);
-                        entries.add(ModItems.CHISEL);
-                        entries.add(ModItems.CAULIFLOWER);
-                        entries.add(ModItems.STARLIGHT_ASHES);
-                        entries.add(ModItems.HONEY_BERRIES);
-                        entries.add(ModItems.MANTIS_SPAWN_EGG);
-                        entries.add(ModItems.TOMAHAWK);
+                    .title(Component.translatable("itemgroup.exploringfabric.misc_mod_stuff"))
+                    .displayItems((displayContext, entries) -> {
+                        entries.accept(ModBlocks.MAGIC_BLOCK);
+                        entries.accept(ModBlocks.CHAIR);
+                        entries.accept(ModItems.CHISEL);
+                        entries.accept(ModItems.CAULIFLOWER);
+                        entries.accept(ModItems.STARLIGHT_ASHES);
+                        entries.accept(ModItems.HONEY_BERRIES);
+                        entries.accept(ModItems.MANTIS_SPAWN_EGG);
+                        entries.accept(ModItems.TOMAHAWK);
                     })
                     .build());
 

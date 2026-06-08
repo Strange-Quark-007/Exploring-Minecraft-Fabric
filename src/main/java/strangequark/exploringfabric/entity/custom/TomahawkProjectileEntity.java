@@ -1,51 +1,51 @@
 package strangequark.exploringfabric.entity.custom;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import strangequark.exploringfabric.entity.ModEntities;
 import strangequark.exploringfabric.item.ModItems;
 import strangequark.exploringfabric.util.ModTags;
 
-public class TomahawkProjectileEntity extends PersistentProjectileEntity {
+public class TomahawkProjectileEntity extends AbstractArrow {
 
-    public TomahawkProjectileEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+    public TomahawkProjectileEntity(EntityType<? extends AbstractArrow> entityType, Level world) {
         super(entityType, world);
     }
 
-    public TomahawkProjectileEntity(World world, PlayerEntity player) {
+    public TomahawkProjectileEntity(Level world, Player player) {
         super(ModEntities.TOMAHAWK, player, world, new ItemStack(ModItems.TOMAHAWK), null);
     }
 
     @Override
-    protected ItemStack getDefaultItemStack() {
+    protected ItemStack getDefaultPickupItem() {
         return new ItemStack(ModItems.TOMAHAWK);
     }
 
     @Override
-    protected SoundEvent getHitSound() {
-        return SoundEvents.BLOCK_CHAIN_HIT;
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
+        return SoundEvents.CHAIN_HIT;
     }
 
     @Override
-    protected void onEntityHit(EntityHitResult entityHitResult) {
-        super.onEntityHit(entityHitResult);
+    protected void onHitEntity(EntityHitResult entityHitResult) {
+        super.onHitEntity(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
-        if (!this.getEntityWorld().isClient()) {
-            entity.damage(((ServerWorld) this.getEntityWorld()), this.getDamageSources().thrown(this, this.getOwner()), 25);
-
-            this.getEntityWorld().sendEntityStatus(this, (byte) 3);
+        if (!this.level().isClientSide()) {
+            entity.hurtServer((ServerLevel) this.level(), this.damageSources().thrown(this, this.getOwner()), 25);
+            this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
         }
     }
@@ -56,14 +56,14 @@ public class TomahawkProjectileEntity extends PersistentProjectileEntity {
      * Discard on hit to prevent repeated throws for balance.
      */
     @Override
-    protected void onBlockHit(BlockHitResult result) {
-        World world = this.getEntityWorld();
-        BlockPos pos = result.getBlockPos();
-        BlockState blockstate = world.getBlockState(pos);
-        if (!this.getEntityWorld().isClient() && blockstate.isIn(ModTags.Blocks.TOMAHAWK_BREAKABLE)) {
-            world.breakBlock(pos, true, this.getOwner());
+    protected void onHitBlock(BlockHitResult blockHitResult) {
+        Level level = this.level();
+        BlockPos pos = blockHitResult.getBlockPos();
+        BlockState blockstate = level.getBlockState(pos);
+        if (!this.level().isClientSide() && blockstate.is(ModTags.Blocks.TOMAHAWK_BREAKABLE)) {
+            level.destroyBlock(pos, true, this.getOwner());
         } else {
-            super.onBlockHit(result);
+            super.onHitBlock(blockHitResult);
             this.discard();
         }
     }

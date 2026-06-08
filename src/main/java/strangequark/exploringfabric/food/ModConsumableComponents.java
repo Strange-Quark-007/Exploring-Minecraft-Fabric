@@ -1,20 +1,20 @@
 package strangequark.exploringfabric.food;
 
-import net.minecraft.component.type.ConsumableComponent;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 
 import java.util.List;
 
-import static net.minecraft.component.type.ConsumableComponents.food;
+import static net.minecraft.world.item.component.Consumables.defaultFood;
 
 public class ModConsumableComponents {
-    public static final ConsumableComponent CAULIFLOWER = food()
-            .consumeEffect(new ApplyEffectsConsumeEffect(
+    public static final Consumable CAULIFLOWER = defaultFood()
+            .onConsume(new ApplyStatusEffectsConsumeEffect(
                     List.of(
-                            new StatusEffectInstance(StatusEffects.WEAKNESS, 300, 1),
-                            new StatusEffectInstance(StatusEffects.SLOWNESS, 300, 1)
+                            new MobEffectInstance(MobEffects.WEAKNESS, 300, 1),
+                            new MobEffectInstance(MobEffects.SLOWNESS, 300, 1)
                     ),
                     0.25f
             ))

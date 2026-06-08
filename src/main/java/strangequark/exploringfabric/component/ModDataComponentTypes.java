@@ -1,10 +1,10 @@
 package strangequark.exploringfabric.component;
 
-import net.minecraft.block.Block;
-import net.minecraft.component.ComponentType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.Block;
 import strangequark.exploringfabric.ExploringFabric;
 
 import java.util.function.UnaryOperator;
@@ -12,14 +12,14 @@ import java.util.function.UnaryOperator;
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModDataComponentTypes {
-    public static final ComponentType<BlockPos> COORDINATES = register("coordinates", blockPosBuilder -> blockPosBuilder.codec(BlockPos.CODEC));
-    public static final ComponentType<Block> BLOCK = register("block", builder -> builder.codec(Registries.BLOCK.getCodec()));
+    public static final DataComponentType<BlockPos> COORDINATES = register("coordinates", builder -> builder.persistent(BlockPos.CODEC));
+    public static final DataComponentType<Block> BLOCK = register("block", builder -> builder.persistent(BuiltInRegistries.BLOCK.byNameCodec()));
 
-    private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderUnaryOperator) {
+    private static <T> DataComponentType<T> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderUnaryOperator) {
         return Registry.register(
-                Registries.DATA_COMPONENT_TYPE,
+                BuiltInRegistries.DATA_COMPONENT_TYPE,
                 createIdentifier(name),
-                builderUnaryOperator.apply(ComponentType.builder()).build());
+                builderUnaryOperator.apply(DataComponentType.builder()).build());
     }
 
     public static void registerDataComponentTypes() {
