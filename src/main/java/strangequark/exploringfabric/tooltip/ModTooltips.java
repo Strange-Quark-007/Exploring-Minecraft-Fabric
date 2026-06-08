@@ -1,9 +1,9 @@
 package strangequark.exploringfabric.tooltip;
 
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.minecraft.block.Block;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.Block;
 import strangequark.exploringfabric.ExploringFabric;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.item.ModItems;
@@ -18,23 +18,23 @@ public class ModTooltips {
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
 
 
-            if (itemStack.isOf(ModItems.CHISEL)) {
-                if (!MinecraftClient.getInstance().isShiftPressed()) {
-                    list.add(Text.translatable("item.exploringfabric.chisel.tooltip"));
+            if (itemStack.is(ModItems.CHISEL)) {
+                if (!Minecraft.getInstance().hasShiftDown()) {
+                    list.add(Component.translatable("item.exploringfabric.chisel.tooltip"));
                     return;
                 }
 
-                list.add(Text.translatable("item.exploringfabric.chisel.tooltip_expanded"));
+                list.add(Component.translatable("item.exploringfabric.chisel.tooltip_expanded"));
 
                 if (itemStack.get(COORDINATES) != null && itemStack.get(BLOCK) instanceof Block block) {
-                    list.add(Text.literal("Last Block changed: " + block.getName().getString() + " at " + itemStack.get(COORDINATES)));
+                    list.add(Component.literal("Last Block changed: " + block.getName().getString() + " at " + itemStack.get(COORDINATES)));
                 }
             }
-            if (itemStack.isOf(ModBlocks.MAGIC_BLOCK.asItem())) {
-                if (MinecraftClient.getInstance().isShiftPressed()) {
-                    list.add(Text.translatable("item.exploringfabric.magic_block.tooltip_expanded"));
+            if (itemStack.is(ModBlocks.MAGIC_BLOCK.asItem())) {
+                if (Minecraft.getInstance().hasShiftDown()) {
+                    list.add(Component.translatable("item.exploringfabric.magic_block.tooltip_expanded"));
                 } else {
-                    list.add(Text.translatable("item.exploringfabric.magic_block.tooltip"));
+                    list.add(Component.translatable("item.exploringfabric.magic_block.tooltip"));
                 }
             }
         });

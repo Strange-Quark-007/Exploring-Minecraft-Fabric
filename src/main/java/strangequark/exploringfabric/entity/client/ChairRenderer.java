@@ -1,14 +1,15 @@
 package strangequark.exploringfabric.entity.client;
 
-import net.minecraft.client.render.Frustum;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.state.EntityRenderState;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import strangequark.exploringfabric.entity.custom.ChairEntity;
 
 public class ChairRenderer extends EntityRenderer<ChairEntity, EntityRenderState> {
-    public ChairRenderer(EntityRendererFactory.Context ctx) {
-        super(ctx);
+
+    public ChairRenderer(EntityRendererProvider.Context context) {
+        super(context);
     }
 
     @Override

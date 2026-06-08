@@ -1,22 +1,22 @@
 package strangequark.exploringfabric.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModRegistryKeys {
     public static class Items {
-        public static RegistryKey<Item> createRegistryKey(String name) {
-            return RegistryKey.of(RegistryKeys.ITEM, createIdentifier(name));
+        public static ResourceKey<Item> createResourceKey(String name) {
+            return ResourceKey.create(Registries.ITEM, createIdentifier(name));
         }
     }
 
     public static class Blocks {
-        public static RegistryKey<Block> createRegistryKey(String name) {
-            return RegistryKey.of(RegistryKeys.BLOCK, createIdentifier(name));
+        public static ResourceKey<Block> createResourceKey(String name) {
+            return ResourceKey.create(Registries.BLOCK, createIdentifier(name));
         }
     }
 }

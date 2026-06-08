@@ -2,21 +2,19 @@ package strangequark.exploringfabric.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Item;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.ApplyBonusLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.StatePredicate;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.block.custom.CauliflowersBlock;
 import strangequark.exploringfabric.block.custom.HoneyBerryBushBlock;
@@ -25,87 +23,77 @@ import strangequark.exploringfabric.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 public class ModLootTableProvider extends FabricBlockLootTableProvider {
-    public ModLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    public ModLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
     @Override
     public void generate() {
-        RegistryWrapper.Impl<Enchantment> enchantmentImpl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
+        var enchantmentImpl = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        add(ModBlocks.PINK_GARNET_ORE, createOreDrop(ModBlocks.PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET));
+        add(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, ModItems.RAW_PINK_GARNET, 2.0F, 5.0F));
+        add(ModBlocks.PINK_GARNET_NETHER_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_NETHER_ORE, ModItems.RAW_PINK_GARNET, 3.0F, 7.0F));
+        add(ModBlocks.PINK_GARNET_END_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_END_ORE, ModItems.RAW_PINK_GARNET, 4.0F, 9.0F));
 
-        addDrop(ModBlocks.PINK_GARNET_ORE, oreDrops(ModBlocks.PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET));
-        addDrop(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, ModItems.RAW_PINK_GARNET, 2.0F, 5.0F));
-        addDrop(ModBlocks.PINK_GARNET_NETHER_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_END_ORE, ModItems.RAW_PINK_GARNET, 3.0F, 7.0F));
-        addDrop(ModBlocks.PINK_GARNET_END_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_END_ORE, ModItems.RAW_PINK_GARNET, 4.0F, 9.0F));
+        dropSelf(ModBlocks.MAGIC_BLOCK);
 
-        addDrop(ModBlocks.MAGIC_BLOCK);
+        dropSelf(ModBlocks.PINK_GARNET_BLOCK);
+        dropSelf(ModBlocks.RAW_PINK_GARNET_BLOCK);
+        add(ModBlocks.PINK_GARNET_SLAB, createSlabItemTable(ModBlocks.PINK_GARNET_SLAB));
+        dropSelf(ModBlocks.PINK_GARNET_STAIRS);
+        dropSelf(ModBlocks.PINK_GARNET_FENCE);
+        dropSelf(ModBlocks.PINK_GARNET_FENCE_GATE);
+        dropSelf(ModBlocks.PINK_GARNET_WALL);
+        add(ModBlocks.PINK_GARNET_DOOR, createDoorTable(ModBlocks.PINK_GARNET_DOOR));
+        dropSelf(ModBlocks.PINK_GARNET_TRAPDOOR);
+        dropSelf(ModBlocks.PINK_GARNET_BUTTON);
+        dropSelf(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
+        dropSelf(ModBlocks.PINK_GARNET_LAMP);
 
-        addDrop(ModBlocks.PINK_GARNET_BLOCK);
-        addDrop(ModBlocks.RAW_PINK_GARNET_BLOCK);
-        addDrop(ModBlocks.PINK_GARNET_SLAB, slabDrops(ModBlocks.PINK_GARNET_SLAB));
-        addDrop(ModBlocks.PINK_GARNET_STAIRS);
-        addDrop(ModBlocks.PINK_GARNET_FENCE);
-        addDrop(ModBlocks.PINK_GARNET_FENCE_GATE);
-        addDrop(ModBlocks.PINK_GARNET_WALL);
-        addDrop(ModBlocks.PINK_GARNET_DOOR, doorDrops(ModBlocks.PINK_GARNET_DOOR));
-        addDrop(ModBlocks.PINK_GARNET_TRAPDOOR);
-        addDrop(ModBlocks.PINK_GARNET_BUTTON);
-        addDrop(ModBlocks.PINK_GARNET_PRESSURE_PLATE);
-        addDrop(ModBlocks.PINK_GARNET_LAMP);
+        dropSelf(ModBlocks.DRIFTWOOD_LOG);
+        dropSelf(ModBlocks.DRIFTWOOD_WOOD);
+        dropSelf(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
+        dropSelf(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+        dropSelf(ModBlocks.DRIFTWOOD_PLANKS);
+        add(ModBlocks.DRIFTWOOD_SLAB, createSlabItemTable(ModBlocks.DRIFTWOOD_SLAB));
+        dropSelf(ModBlocks.DRIFTWOOD_FENCE);
+        dropSelf(ModBlocks.DRIFTWOOD_FENCE_GATE);
+        dropSelf(ModBlocks.DRIFTWOOD_BUTTON);
+        dropSelf(ModBlocks.DRIFTWOOD_PRESSURE_PLATE);
+        dropSelf(ModBlocks.DRIFTWOOD_SAPLING);
 
-        addDrop(ModBlocks.DRIFTWOOD_LOG);
-        addDrop(ModBlocks.DRIFTWOOD_WOOD);
-        addDrop(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
-        addDrop(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
-        addDrop(ModBlocks.DRIFTWOOD_PLANKS);
-        addDrop(ModBlocks.DRIFTWOOD_SLAB);
-        addDrop(ModBlocks.DRIFTWOOD_FENCE);
-        addDrop(ModBlocks.DRIFTWOOD_FENCE_GATE);
-        addDrop(ModBlocks.DRIFTWOOD_BUTTON);
-        addDrop(ModBlocks.DRIFTWOOD_PRESSURE_PLATE);
-        addDrop(ModBlocks.DRIFTWOOD_SAPLING);
+        add(ModBlocks.DRIFTWOOD_LEAVES, createLeavesDrops(ModBlocks.DRIFTWOOD_LEAVES, ModBlocks.DRIFTWOOD_SAPLING, 0.0625f));
 
-        addDrop(ModBlocks.DRIFTWOOD_LEAVES, leavesDrops(ModBlocks.DRIFTWOOD_LEAVES, ModBlocks.DRIFTWOOD_SAPLING, 0.0625f));
-        
-        BlockStatePropertyLootCondition.Builder cauliflowerCondition =
-                BlockStatePropertyLootCondition.builder(ModBlocks.CAULIFLOWERS)
-                        .properties(StatePredicate.Builder.create().exactMatch(CauliflowersBlock.AGE, CauliflowersBlock.MAX_AGE));
+        LootItemBlockStatePropertyCondition.Builder cauliflowerCondition =
+                LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.CAULIFLOWERS)
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CauliflowersBlock.AGE, CauliflowersBlock.MAX_AGE));
 
-        this.addDrop(ModBlocks.CAULIFLOWERS, this.cropDrops(ModBlocks.CAULIFLOWERS, ModItems.CAULIFLOWER, ModItems.CAULIFLOWER, cauliflowerCondition));
+        this.add(ModBlocks.CAULIFLOWERS, this.createCropDrops(ModBlocks.CAULIFLOWERS, ModItems.CAULIFLOWER, ModItems.CAULIFLOWER, cauliflowerCondition));
 
-        this.addDrop(
-                Blocks.SWEET_BERRY_BUSH,
-                block -> this.applyExplosionDecay(
-                        block,
-                        LootTable.builder()
-                                .pool(
-                                        LootPool.builder()
-                                                .conditionally(
-                                                        BlockStatePropertyLootCondition.builder(ModBlocks.HONEY_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(HoneyBerryBushBlock.AGE, 3))
-                                                )
-                                                .with(ItemEntry.builder(ModItems.HONEY_BERRIES))
-                                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 3.0F)))
-                                                .apply(ApplyBonusLootFunction.uniformBonusCount(enchantmentImpl.getOrThrow(Enchantments.FORTUNE)))
-                                )
-                                .pool(
-                                        LootPool.builder()
-                                                .conditionally(
-                                                        BlockStatePropertyLootCondition.builder(ModBlocks.HONEY_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(HoneyBerryBushBlock.AGE, 2))
-                                                )
-                                                .with(ItemEntry.builder(ModItems.HONEY_BERRIES))
-                                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
-                                                .apply(ApplyBonusLootFunction.uniformBonusCount(enchantmentImpl.getOrThrow(Enchantments.FORTUNE)))
-                                )
-                )
-        );
+        this.add(ModBlocks.HONEY_BERRY_BUSH, block -> this.applyExplosionDecay(
+                block, LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.HONEY_BERRY_BUSH)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(HoneyBerryBushBlock.AGE, 3)))
+                                .add(LootItem.lootTableItem(ModItems.HONEY_BERRIES))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(enchantmentImpl.getOrThrow(Enchantments.FORTUNE)))
+                        )
+                        .withPool(LootPool.lootPool()
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.HONEY_BERRY_BUSH)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(HoneyBerryBushBlock.AGE, 2)))
+                                .add(LootItem.lootTableItem(ModItems.HONEY_BERRIES))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(enchantmentImpl.getOrThrow(Enchantments.FORTUNE)))
+                        )
+        ));
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {
-        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
-        return this.dropsWithSilkTouch(drop, this.applyExplosionDecay(drop, ItemEntry.builder(item)
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(minDrops, maxDrops)))
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                )
-        );
+        var impl = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        return this.createSilkTouchDispatchTable(drop, this.applyExplosionDecay(drop, LootItem.lootTableItem(item)
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(minDrops, maxDrops)))
+                .apply(ApplyBonusCount.addOreBonusCount(impl.getOrThrow(Enchantments.FORTUNE)))
+        ));
     }
 }

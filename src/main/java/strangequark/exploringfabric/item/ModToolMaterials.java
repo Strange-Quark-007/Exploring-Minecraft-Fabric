@@ -1,6 +1,6 @@
 package strangequark.exploringfabric.item;
 
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.world.item.ToolMaterial;
 import strangequark.exploringfabric.util.ModTags.Blocks;
 import strangequark.exploringfabric.util.ModTags.Items;
 

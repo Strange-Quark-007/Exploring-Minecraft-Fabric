@@ -1,24 +1,24 @@
 package strangequark.exploringfabric.effect;
 
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import strangequark.exploringfabric.ExploringFabric;
 
 import static strangequark.exploringfabric.util.ModIdentifier.createIdentifier;
 
 public class ModEffects {
-    public static final RegistryEntry<StatusEffect> SLIMEY = registerStatusEffect(
+    public static final Holder<MobEffect> SLIMEY = registerStatusEffect(
             "slimey",
-            new SlimeyEffect(StatusEffectCategory.NEUTRAL, 0x36ebab)
-                    .addAttributeModifier(EntityAttributes.MOVEMENT_SPEED, createIdentifier("effect.slimey"), -0.25f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+            new SlimeyEffect(MobEffectCategory.NEUTRAL, 0x36ebab)
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, createIdentifier("effect.slimey"), -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
 
-    private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
-        return Registry.registerReference(Registries.STATUS_EFFECT, createIdentifier(name), statusEffect);
+    private static Holder<MobEffect> registerStatusEffect(String name, MobEffect statusEffect) {
+        return Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, createIdentifier(name), statusEffect);
     }
 
     public static void registerEffects() {

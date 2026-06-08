@@ -3,8 +3,8 @@ package strangequark.exploringfabric;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.minecraft.client.render.BlockRenderLayer;
-import net.minecraft.client.render.entity.EntityRendererFactories;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.entity.ModEntities;
 import strangequark.exploringfabric.entity.client.*;
@@ -14,16 +14,16 @@ public class ExploringFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModTooltips.registerModTooltips();
-        BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT, ModBlocks.PINK_GARNET_DOOR, ModBlocks.PINK_GARNET_TRAPDOOR);
-        BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT, ModBlocks.CAULIFLOWERS, ModBlocks.HONEY_BERRY_BUSH);
-        BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT, ModBlocks.DRIFTWOOD_SAPLING);
+        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT, ModBlocks.PINK_GARNET_DOOR, ModBlocks.PINK_GARNET_TRAPDOOR);
+        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT, ModBlocks.CAULIFLOWERS, ModBlocks.HONEY_BERRY_BUSH);
+        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT, ModBlocks.DRIFTWOOD_SAPLING);
 
-        EntityRendererFactories.register(ModEntities.MANTIS, MantisRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(MantisModel.MANTIS, MantisModel::getTexturedModelData);
+        EntityRenderers.register(ModEntities.MANTIS, MantisRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(MantisModel.MANTIS, MantisModel::createBodyLayer);
 
-        EntityRendererFactories.register(ModEntities.TOMAHAWK, TomahawkProjectileRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(TomahawkProjectileModel.TOMAHAWK, TomahawkProjectileModel::getTexturedModelData);
+        EntityRenderers.register(ModEntities.TOMAHAWK, TomahawkProjectileRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(TomahawkProjectileModel.TOMAHAWK, TomahawkProjectileModel::createBodyLayer);
 
-        EntityRendererFactories.register(ModEntities.CHAIR, ChairRenderer::new);
+        EntityRenderers.register(ModEntities.CHAIR, ChairRenderer::new);
     }
 }

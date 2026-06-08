@@ -1,32 +1,16 @@
 package strangequark.exploringfabric.effect;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 
-// Climbing Effect by SameDifferent: https://github.com/samedifferent/TrickOrTreat/blob/master/src/main/java/samebutdifferent/trickortreat/effect/ClimbingEffect.java
-// MIT License!
-public class SlimeyEffect extends StatusEffect {
-    public SlimeyEffect(StatusEffectCategory category, int color) {
+public class SlimeyEffect extends MobEffect {
+    public SlimeyEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        if (entity.horizontalCollision) {
-            Vec3d initialVec = entity.getVelocity();
-            Vec3d climbVec = new Vec3d(initialVec.x, 0.2D, initialVec.z);
-            entity.setVelocity(climbVec.multiply(0.96D));
-            return true;
-        }
-
-        return super.applyUpdateEffect(world, entity, amplifier);
-    }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

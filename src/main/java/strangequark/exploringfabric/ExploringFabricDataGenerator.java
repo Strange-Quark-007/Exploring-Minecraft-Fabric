@@ -2,8 +2,8 @@ package strangequark.exploringfabric;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.registry.RegistryBuilder;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 import strangequark.exploringfabric.datagen.*;
 import strangequark.exploringfabric.enchantment.ModEnchantments;
 import strangequark.exploringfabric.trim.ModTrimMaterials;
@@ -25,12 +25,13 @@ public class ExploringFabricDataGenerator implements DataGeneratorEntrypoint {
     }
 
     @Override
-    public void buildRegistry(RegistryBuilder registryBuilder) {
-        registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ModTrimMaterials::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.TRIM_PATTERN, ModTrimPatterns::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
+    public void buildRegistry(RegistrySetBuilder registryBuilder) {
+        DataGeneratorEntrypoint.super.buildRegistry(registryBuilder);
+        registryBuilder.add(Registries.TRIM_PATTERN, ModTrimPatterns::bootstrap);
+        registryBuilder.add(Registries.TRIM_MATERIAL, ModTrimMaterials::bootstrap);
+        registryBuilder.add(Registries.ENCHANTMENT, ModEnchantments::bootstrap);
 
-        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+        registryBuilder.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+        registryBuilder.add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
     }
 }

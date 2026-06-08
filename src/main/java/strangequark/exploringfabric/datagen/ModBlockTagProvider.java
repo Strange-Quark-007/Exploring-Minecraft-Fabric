@@ -2,21 +2,21 @@ package strangequark.exploringfabric.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.BlockTags;
 import strangequark.exploringfabric.block.ModBlocks;
 import strangequark.exploringfabric.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
 public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
-    public ModBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public ModBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
+        valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.PINK_GARNET_BLOCK)
                 .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
                 .add(ModBlocks.PINK_GARNET_ORE)
@@ -46,10 +46,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
 
         valueLookupBuilder(ModTags.Blocks.HAMMER_MINEABLE)
-                .addOptionalTag(BlockTags.AXE_MINEABLE)
-                .addOptionalTag(BlockTags.PICKAXE_MINEABLE)
-                .addOptionalTag(BlockTags.SHOVEL_MINEABLE)
-                .addOptionalTag(BlockTags.HOE_MINEABLE)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_AXE)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_HOE)
                 .addOptionalTag(BlockTags.LEAVES);
 
         valueLookupBuilder(BlockTags.LEAVES)
@@ -59,7 +59,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         valueLookupBuilder(BlockTags.FENCE_GATES).add(ModBlocks.DRIFTWOOD_FENCE_GATE);
 
         valueLookupBuilder(ModTags.Blocks.TOMAHAWK_BREAKABLE)
-                .addOptionalTag(BlockTags.AXE_MINEABLE)
+                .addOptionalTag(BlockTags.MINEABLE_WITH_AXE)
                 .addTag(BlockTags.LEAVES);
     }
 }

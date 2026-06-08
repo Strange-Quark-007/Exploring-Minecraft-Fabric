@@ -1,9 +1,10 @@
 package strangequark.exploringfabric.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 @FunctionalInterface
 public interface BlockFactory<T extends Block> {
-    T create(AbstractBlock.Settings settings);
+    T create(BlockBehaviour.Properties properties);
 }
